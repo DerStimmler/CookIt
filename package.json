@@ -1,0 +1,29 @@
+{
+  "name": "cookit",
+  "version": "1.0.0",
+  "description": "App zur Verwaltung von Rezepten",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DerStimmler/CookIt.git"
+  },
+  "keywords": [
+    "Rezept",
+    "Kochen",
+    "Essen",
+    "Browser",
+    "App",
+    "Single",
+    "Page",
+    "App"
+  ],
+  "author": "Goeller, Schneider, Sollner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DerStimmler/CookIt/issues"
+  },
+  "homepage": "https://github.com/DerStimmler/CookIt#readme"
+}
