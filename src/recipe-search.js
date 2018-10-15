@@ -1,3 +1,7 @@
+"use strict";
+
+import stylesheet from "/recipe-search.css";
+
 //Ruft anhand der URL von RecipePuppy entsprechende Rezepte ab, verarbeitet Sie und liefert sie in einem Array zurück
 function getRecipes(url) {
     var xhr = new XMLHttpRequest();
