@@ -1,9 +1,14 @@
+@font-face{
+    font-family: CallingHeart;
+    src:url(/fonts/CallingHeart.ttf);
+}
 html {
     background-image: url(/img/background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
+    z-index: 1;
 }
 
 html, body {
@@ -12,5 +17,27 @@ html, body {
 }
 
 body {
+    z-index: 2;
+    background-color:rgba(255,255,255,0.95);
+    margin: 2em 5em;
+    padding:0em 1em 1em 1em;
+    height: 100%;
+    box-shadow:3px 3px 15px 10px rgba(128,128,128,0.8);
+}
+header{
 
+}
+
+h1{
+font-family: CallingHeart;
+font-size: 5em;
+text-align: center;
+color: olivedrab;
+margin-top:0em;
+margin-bottom: 0em;
+}
+
+div {
+    font-size: 0.9em;
+    font-family: "Lucida Fax",serif;
 }
