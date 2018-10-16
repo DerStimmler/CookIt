@@ -54,6 +54,30 @@ class App {
     this._router.resolve();
   }
 
+/**
+   * Aufruf der Übersichtsseite der vorhandenen Songs.
+   * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
+   */
+  showRecipeOverview() {
+    let view = new RecipeOverview(this);
+    this._switchVisibleView(view);
+  }
+
+  /**
+   * Aufruf der Detailseite zur Anzeige oder zum Bearbeiten eines Songs.
+   *
+   * @param  {String} id Song-ID
+   * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
+   */
+  showSongDisplayEdit(id) {
+    let view = new RecipeEdit(this, id);
+    this._switchVisibleView(view);
+  }
+
+  showInfo() {
+    let view = new Info(this);
+    this._switchVisibleView(view);
+  }
   /**
    * Aufruf der Übersichtsseite der favorisierten Rezepte.
    * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte

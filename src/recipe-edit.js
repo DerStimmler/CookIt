@@ -27,10 +27,10 @@ class RecipeEdit {
      * Methode App._switchVisibleContent()
      */
     onShow() {
-        let section = document.querySelector("#song-display-edit").cloneNode(true);
+        let section = document.querySelector("#recipe-edit").cloneNode(true);
 
     return {
-        className: "song-display-edit",
+        className: "recipe-edit",
         topbar: section.querySelectorAll("header > *"),
         main: section.querySelectorAll("main > *"),
     };

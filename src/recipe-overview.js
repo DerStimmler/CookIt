@@ -25,10 +25,10 @@ class RecipeOverview {
      */
     onShow() {
         // Anzuzeigende HTML-Elemente ermitteln
-        let section = document.querySelector("#song-overview").cloneNode(true);
+        let section = document.querySelector("#recipe-overview").cloneNode(true);
 
     return {
-      className: "song-overview",
+      className: "recipe-overview",
       topbar: section.querySelectorAll("header > *"),
       main: section.querySelectorAll("main > *")
     };
