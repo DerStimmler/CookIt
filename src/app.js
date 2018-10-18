@@ -2,9 +2,10 @@
 
 import Navigo from "navigo/lib/navigo.js";
 import stylesheet from "/app.css";
-import RecipeEdit from "/recipe-edit.js";
-import RecipeOverview from "/recipe-overview.js";
-import Info from "/info.js";
+import RecipeEdit from "./recipe-edit/recipe-edit.js";
+import RecipeOverview from "./recipe-overview/recipe-overview.js";
+import RecipeSearch from "./recipe-search/recipe-search.js";
+import Info from "./info/info.js";
 
 /**
  * Hauptklasse der Anwendung. Kümmert sich darum, die Anwendung auszuführen
@@ -24,9 +25,12 @@ class App {
 
     //Hier die URLs einfügen
     this._router.on({
-      "*": () => this.showRecipeOverview(),
-      "/info/": () => this.showInfo(),
-      "/search/": () => this.showSearch()
+      "*": () => this.showRecipeOverview(), //Rezeptübersicht (favorisierte Rezepte)
+      "/info/": () => this.showInfo(),      //Infoseite
+      "/search/": () => this.showRecipeSearch()   //Suchseite
+      //"/new/": () => this.showNew()       //Seite um neues Rezept anzulegen
+      //"edit/:id/": params => this.showRecipeEdit(params.id)   //Seite um ein Rezept zu bearbeiten
+      //"display/:id/": params => this.showRecipeDisplay(params.id)   //Seite um ein Rezept anzuzeigen
     });
 
     this._router.hooks({
@@ -54,8 +58,13 @@ class App {
     this._router.resolve();
   }
 
+
+
+
+
+
 /**
-   * Aufruf der Übersichtsseite der vorhandenen Songs.
+   * Aufruf der Übersichtsseite der vorhandenen Rezepte.
    * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
    */
   showRecipeOverview() {
@@ -64,39 +73,43 @@ class App {
   }
 
   /**
-   * Aufruf der Detailseite zur Anzeige oder zum Bearbeiten eines Songs.
+   * Aufruf der Seite zum Bearbeiten eines Rezepts.
    *
-   * @param  {String} id Song-ID
+   * @param  {String} id Rezept-ID
    * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
    */
-  showSongDisplayEdit(id) {
+  showRecipeEdit(id) {
     let view = new RecipeEdit(this, id);
     this._switchVisibleView(view);
   }
 
+  /**
+   * Aufruf der Info Seite.
+   * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
+   */
   showInfo() {
     let view = new Info(this);
     this._switchVisibleView(view);
   }
+
   /**
-   * Aufruf der Übersichtsseite der favorisierten Rezepte.
+   * Aufruf der Info Seite.
    * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
    */
-  showSongOverview() {
-    let view = new RecipeOverview(this);
+  showRecipeSearch() {
+    let view = new RecipeSearch(this);
     this._switchVisibleView(view);
   }
 
-  /**
-   * Aufruf der Detailseite zur Anzeige oder zum Bearbeiten eines Songs.
-   *
-   * @param  {String} id Song-ID
-   * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
-   */
-  showSongDisplayEdit(id) {
-    let view = new SongDisplayEdit(this, id);
-    this._switchVisibleView(view);
-  }
+
+
+
+
+
+
+
+
+
   /**
    * Hilfsklasse zum Umschalten auf eine neue Seite. Sie ruft zunächst die
    * Methode onLeave() der gerade sichtbaren View auf und prüft damit, ob
@@ -132,6 +145,10 @@ class App {
     this._switchVisibleContent(view.onShow());
     return true;
   }
+
+
+
+
 
   /**
  * Auswechseln des sichtbaren Inhalts der App. Hierfür muss der Methode

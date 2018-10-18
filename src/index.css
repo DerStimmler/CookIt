@@ -1,100 +1,131 @@
-@font-face{
-    font-family: CallingHeart;
-    src:url(/fonts/CallingHeart.ttf);
+@font-face {
+  font-family: CallingHeart;
+  src: url(/fonts/CallingHeart.ttf);
 }
 html {
+  background-image: url(/img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: 1;
+  font-family: "Lucida Fax", serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--font-color);
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100%;
+  border-radius: 5px;
+}
+
+header > div {
+  background-color: var(--olivegreen);
+  height: 0.5em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+footer > div {
+  background-color: var(--olivegreen);
+  height: 0.5em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+h1 {
+  font-family: CallingHeart;
+  font-size: 5em;
+  text-align: center;
+  color: var(--olivegreen);
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+/*Für über */
+@media screen and (min-width: 900px) {
+  html {
     background-image: url(/img/background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
     z-index: 1;
-    font-family: "Lucida Fax",serif;
+    font-family: "Lucida Fax", serif;
+  }
+
+  body {
+    margin: 2em 5em;
+    box-shadow: 3px 3px 15px 10px rgba(128, 128, 128, 0.8);
+  }
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
+main{
+  padding: 0em 1em 1em 1em;
 }
 
-body {
-    color: var(--font-color);
-    z-index: 2;
-    background-color:rgba(255,255,255,0.95);
-    padding:0em 1em 1em 1em;
-    height: 100%;
-}
-
-h1{
-font-family: CallingHeart;
-font-size: 5em;
-text-align: center;
-color: var(--olivegreen);
-margin-top:0em;
-margin-bottom: 0em;
-}
-
-/*Für über */
-@media screen and (min-width: 900px){
-    html {
-        background-image: url(/img/background.jpg);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-        background-size: cover;
-        z-index: 1;
-        font-family: "Lucida Fax",serif;
-    }
-
-    body {
-        margin: 2em 5em;
-        box-shadow:3px 3px 15px 10px rgba(128,128,128,0.8);
-    }
-}
 div {
-    font-size: 0.9em;
+  font-size: 0.9em;
 }
-nav#app-menu{
-    font-size: 1em;
-    background-color: var(--olivegreen);
-    border: 0px solid white;
-    border-top-width: 3px;
+
+nav#app-menu {
+  font-size: 1em;
+  background-color: var(--olivegreen);
+  border: 0px solid white;
+  border-top-width: 3px;
 }
-nav>ul{
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding:0;
-    color:white;
+
+nav > ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 nav li {
-    text-align: center;
-    width:33%;
-    padding:1em 2em;
-    margin:0;
-}
-nav li:hover{
-        transition: 0.5s;
-    background-color: rgba(250,250,210,0.5);
-    border-top: 3px solid beige;
+  text-align: center;
+  width: 33%;
+  padding: 1em 2em;
+  margin: 0;
 }
 
-nav li.active{
-    background-color: white;
-    color: var(--olivegreen);
-    border: 0px solid var(--olivegreen);
-    border-top-width: 3px;
+nav a {
+  color: white;
+  text-decoration: none;
 }
 
-nav li.active:hover{
-    transition: 0.5s;
-    background-color: rgba(250,250,210,0.5);
-    color: var(--olivegreen);
-    border: 0px solid var(--olivegreen);
-    border-top: 3px solid beige;
+nav li.active a {
+  color: var(--olivegreen);
+  text-decoration: none;
+}
+
+nav li:hover {
+  transition: 0.5s;
+  background-color: rgba(250, 250, 210, 0.5);
+  border-top: 3px solid beige;
+}
+
+nav li.active {
+  background-color: white;
+  color: var(--olivegreen);
+  border: 0px solid var(--olivegreen);
+  border-top-width: 3px;
+}
+
+nav li.active:hover {
+  transition: 0.5s;
+  background-color: rgba(250, 250, 210, 0.5);
+  color: var(--olivegreen);
+  border: 0px solid var(--olivegreen);
+  border-top: 3px solid beige;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

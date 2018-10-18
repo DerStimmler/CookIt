@@ -19,38 +19,37 @@ let db = new Dexie("CookIt");
  */
 
 database.version(1).stores({
-    recipes: "id, title, href, ingredients, thumbnail, fav, extern, date"
+  recipes: "id, title, href, ingredients, thumbnail, fav, extern, date"
 });
 
 class Recipes {
-
-    //Neues Rezept hinzufügen
-    async saveNew(recipe) {
-        return db.recipes.add(recipe);
-    }
-    //bestehendes Rezept aktualisieren
-    async update(songtext) {
-        return db.recipes.put(songtext);
-    }
-    //Rezept anhand von ID löschen
-    async delete(id) {
-        return db.recipes.delete(id);
-    }
-    //Rezept anhand der ID auslesen
-    async getById(id) {
-        return db.recipes.get(id);
-    }
-    //alle Rezepte nach Datum sortiert als Array bekommen
-    async getAllRecipesByDate(){
-        return db.recipes.sortBy(date).toArray();
-    }
-    //alle Rezepte nach Titel sortiert als Array bekommen
-    async getAllRecipesByTitle(){
-        return db.recipes.sortBy(title).toArray();
-    }
+  //Neues Rezept hinzufügen
+  async saveNew(recipe) {
+    return db.recipes.add(recipe);
+  }
+  //bestehendes Rezept aktualisieren
+  async update(recipe) {
+    return db.recipes.put(recipe);
+  }
+  //Rezept anhand von ID löschen
+  async delete(id) {
+    return db.recipes.delete(id);
+  }
+  //Rezept anhand der ID auslesen
+  async getById(id) {
+    return db.recipes.get(id);
+  }
+  //alle Rezepte nach Datum sortiert als Array bekommen
+  async getAllRecipesByDate() {
+    return db.recipes.sortBy(date).toArray();
+  }
+  //alle Rezepte nach Titel sortiert als Array bekommen
+  async getAllRecipesByTitle() {
+    return db.recipes.sortBy(title).toArray();
+  }
 }
 
-export default{
-    db,
-    Recipes,
+export default {
+  db,
+  Recipes
 };

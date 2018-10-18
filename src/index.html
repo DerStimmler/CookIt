@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>CookIt!</title>
-        <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
-        <script src="index.js"></script>
-    </head>
-        <body>
-            <!-- ========================= -->
-            <!-- Grundgerüst der Anwendung -->
-            <!-- ========================= -->
-            <section id="app">
-                <header>
-                    <h1>CookIt!</h1>
-                </header>
-                <nav id="app-menu">
-                    <ul>
-                        <li class="active">
-                            <a>Meine Rezepte</a>
-                        </li>
-                        <li class>
-                            <a>Rezept suchen</a>
-                        </li>
-                        <li class>
-                            <a>Info</a>
-                        </li>
-                    </ul>
-                </nav>
-                <main>
-                    
-                </main>
-            </section>
 
-            <!-- ====================== -->
-            <!-- View: Vorhandene Songs -->
-            <!-- ====================== -->
-            <section id="recipe-overview" class="hidden">
-                …
-            </section>
+<head>
+    <meta charset="utf-8" />
+    <title>CookIt!</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <script src="index.js"></script>
+</head>
 
-            <!-- ================================== -->
-            <!-- View: Song anzeigen und bearbeiten -->
-            <!-- ================================== -->
-            <section id="recipe-search" class="hidden">
-                …
-            </section>
-            <section id="info" class="hidden">
-                ...
-            </section>
-            <section id="recipe-edit" class="hidden">
-                ...
-            </section>
-            <section id="recipe-view" class="hidden">
-                ...
-            </section>
-        </body>
-    </html>
+<body>
+    <!-- ========================= -->
+    <!-- Grundgerüst der Anwendung -->
+    <!-- ========================= -->
+    <section id="app">
+        <header>
+            <div></div>
+            <h1>CookIt!</h1>
+        </header>
+        <nav id="app-menu">
+            <ul>
+                <li class="active">
+                    <a href="/" data-navigo>Meine Rezepte</a>
+                </li>
+                <li class>
+                    <a href="/search/" data-navigo>Rezept suchen</a>
+                </li>
+                <li class>
+                    <a href="/info/" data-navigo>Info</a>
+                </li>
+            </ul>
+        </nav>
+        <main>
+
+        </main>
+    </section>
+
+    <!-- ======================== -->
+    <!-- View: Vorhandene Rezepte -->
+    <!-- ======================== -->
+    <section id="recipe-overview" class="hidden">
+        <main>
+            <p>Übersicht</p>
+        </main>
+    </section>
+
+
+    <section id="recipe-search" class="hidden">
+        <main>
+            <p>Rezeptsuche</p>
+        </main>>
+    </section>
+    <section id="info" class="hidden">
+        <main>
+            <p>Info</p>
+        </main>
+    </section>
+    <section id="recipe-edit" class="hidden">
+        ...
+    </section>
+    <section id="recipe-view" class="hidden">
+        ...
+    </section>
+
+    <footer>
+    
+        <div></div>
+    </footer>
+</body>
+
+</html>
