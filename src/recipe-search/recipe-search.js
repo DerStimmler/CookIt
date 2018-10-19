@@ -24,12 +24,15 @@ class RecipeSearch {
    */
   onShow() {
     // Anzuzeigende HTML-Elemente ermitteln
-    let section = document.querySelector("#recipe-search").cloneNode(true);
+    let content = document.createElement("div");
+    let test = document.createElement("p");
+    test.innerHTML = "Search";
 
+    content.appendChild(test);
+    
     return {
       className: "recipe-search",
-      topbar: section.querySelectorAll("header > *"),
-      main: section.querySelectorAll("main > *")
+      main: content
     };
   }
 

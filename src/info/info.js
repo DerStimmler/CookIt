@@ -22,12 +22,15 @@ class Info {
    */
   onShow() {
     // Anzuzeigende HTML-Elemente ermitteln
-    let section = document.querySelector("#info").cloneNode(true);
+    let content = document.createElement("div");
+    let test = document.createElement("p");
+    test.innerHTML = "Info";
 
+    content.appendChild(test);
+    
     return {
       className: "info",
-      topbar: section.querySelectorAll("header > *"),
-      main: section.querySelectorAll("main > *")
+      main: content
     };
   }
 

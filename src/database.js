@@ -18,7 +18,7 @@ let db = new Dexie("CookIt");
  * }
  */
 
-database.version(1).stores({
+db.version(1).stores({
   recipes: "id, title, href, ingredients, thumbnail, fav, extern, date"
 });
 
