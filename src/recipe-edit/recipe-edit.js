@@ -29,10 +29,10 @@ class RecipeEdit {
   onShow() {
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "Edit";
+    test.innerHTML = "<h2>Edit</h2><br>Hier kann man bald Rezepte bearbeiten!";
 
     content.appendChild(test);
-    
+
     return {
       className: "recipe-edit",
       main: content

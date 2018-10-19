@@ -107,7 +107,7 @@ nav a > li.active {
 }
 
 nav a > li:hover {
-  transition: 0.5s;
+  transition: 0.2s;
   background-color: rgba(250, 250, 210, 0.5);
   border-top: 3px solid beige;
 }
@@ -120,7 +120,7 @@ nav a > li.active {
 }
 
 nav a > li.active:hover {
-  transition: 0.5s;
+  transition: 0.2s;
   background-color: rgba(250, 250, 210, 0.5);
   color: var(--olivegreen);
   border: 0px solid var(--olivegreen);

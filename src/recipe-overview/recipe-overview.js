@@ -27,7 +27,7 @@ class RecipeOverview {
     // Anzuzeigende HTML-Elemente ermitteln
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "Übersicht";
+    test.innerHTML = "<h2>Übersicht</h2><br>Hier sieht man bald alle favorisierten Rezepte!";
     
     
     content.appendChild(test);

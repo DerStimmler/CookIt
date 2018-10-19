@@ -26,10 +26,10 @@ class RecipeSearch {
     // Anzuzeigende HTML-Elemente ermitteln
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "Search";
+    test.innerHTML = "<h2>Search</h2><br>Hier kann man bald Rezepte suchen!";
 
     content.appendChild(test);
-    
+
     return {
       className: "recipe-search",
       main: content

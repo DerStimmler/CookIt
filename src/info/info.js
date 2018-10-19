@@ -24,10 +24,10 @@ class Info {
     // Anzuzeigende HTML-Elemente ermitteln
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "Info";
+    test.innerHTML = "<h2>Info</h2><br>Hier kommt später mal der Info Text hin!";
 
     content.appendChild(test);
-    
+
     return {
       className: "info",
       main: content
