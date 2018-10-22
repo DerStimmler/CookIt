@@ -6,6 +6,7 @@ import RecipeEdit from "./recipe-edit/recipe-edit.js";
 import RecipeOverview from "./recipe-overview/recipe-overview.js";
 import RecipeSearch from "./recipe-search/recipe-search.js";
 import RecipeNew from "./recipe-new/recipe-new.js";
+import RecipeDisplay from "./recipe-display/recipe-display.js";
 import Info from "./info/info.js";
 import db from "/database.js";
 /**
@@ -142,6 +143,10 @@ class App {
   }
   showNew(){
       let view= new RecipeNew(this);
+      this._switchVisibleView(view);
+  }
+  showRecipeDisplay(id){
+      let view= new RecipeDisplay(this, id);
       this._switchVisibleView(view);
   }
 
