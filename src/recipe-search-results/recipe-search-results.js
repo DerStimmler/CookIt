@@ -146,6 +146,15 @@ function getRecipes(url, content) {
 
 
 function printResults(results, content) {
+if (results.length === 0){
+    let errorText = document.createElement("div");
+    errorText.setAttribute("id","error");
+    errorText.innerHTML = "Keine Rezepte gefunden!";
+    content.appendChild(errorText);
+    let hint = document.getElementById("hint");
+    content.removeChild(hint);
+}
+else{
   console.log("3", results);
   let hint = document.getElementById("hint");
   content.removeChild(hint);
@@ -183,6 +192,7 @@ function printResults(results, content) {
   let arrow = document.getElementById("arrow");
   arrow.classList.remove("hidden");
   content.appendChild(arrow);
+}
 }
 
 export default RecipeSearchResults;

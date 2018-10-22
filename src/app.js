@@ -6,8 +6,9 @@ import RecipeEdit from "./recipe-edit/recipe-edit.js";
 import RecipeOverview from "./recipe-overview/recipe-overview.js";
 import RecipeSearch from "./recipe-search/recipe-search.js";
 import RecipeSearchResults from "./recipe-search-results/recipe-search-results.js"
+import RecipeNew from "./recipe-new/recipe-new.js";
 import Info from "./info/info.js";
-
+import db from "/database.js";
 /**
  * Hauptklasse der Anwendung. Kümmert sich darum, die Anwendung auszuführen
  * und die angeforderten Bildschirmseiten anzuzeigen.
@@ -17,6 +18,45 @@ class App {
    * Konstruktor.
    */
   constructor() {
+
+          // ANDRES DATENBANKEN TEST********************************************************************************************
+          console.log("Hier ist ein TEST");
+           let test = async () => {
+           let recipes = new db.Recipes();
+                          //await recipes.clear(); ZUM CLEANEN HIIIIIIIIER GÖNNEN***********************************************
+           let alle = await recipes.getAllRecipesByTitle();
+           console.log("Alle Rezepte", alle);
+           if (true) {
+               //console.log("Bisher noch keine Songs vorhanden, lege deshalb Testdaten an");
+               await Promise.all([
+                   /*recipes.saveNew({
+                       id: "01",
+                       title: "Ginger Champagne",
+                       href: "http:\/\/allrecipes.com\/Recipe\/Ginger-Champagne\/Detail.aspx",
+                       ingredients: "champagne, ginger, ice, vodka",
+                       thumbnail: "http:\/\/img.recipepuppy.com\/1.jpg",
+                       fav: "true",
+                       extern: "true",
+                       date: "21.10.18"
+                   }),
+                   recipes.saveNew({
+                       id: "02",
+                       title: "Potato and Cheese Frittata",
+                       href: "http:\/\/allrecipes.com\/Recipe\/Potato-and-Cheese-Frittata\/Detail.aspx",
+                       ingredients: "cheddar cheese, eggs, olive oil, onions, potato, salt",
+                       thumbnail: "http:\/\/img.recipepuppy.com\/2.jpg",
+                       fav: "true",
+                       extern: "true",
+                       date: "21.10.18"
+                   }),*/
+               ]);
+           }
+           let allerezepte = await recipes.getAllRecipesByTitle();
+           console.log("Gespeicherte:", allerezepte);
+       }
+
+       test();
+      // ENDE DES TESTS***************************************************************************************************
     this._title = "CookIt!";
     this._currentView = null;
     // Single Page Router aufsetzen
@@ -29,10 +69,10 @@ class App {
       "*": () => this.showRecipeOverview(), //Rezeptübersicht (favorisierte Rezepte)
       "/info/": () => this.showInfo(),      //Infoseite
       "/search/": () => this.showRecipeSearch(),   //Suchseite
-      "/search/results/:word/:ingredients": params => this.showRecipeSearchResults(params.word,params.ingredients,)
-      //"/new/": () => this.showNew()       //Seite um neues Rezept anzulegen
-      //"edit/:id/": params => this.showRecipeEdit(params.id)   //Seite um ein Rezept zu bearbeiten
-      //"display/:id/": params => this.showRecipeDisplay(params.id)   //Seite um ein Rezept anzuzeigen
+      "/search/results/:word/:ingredients": params => this.showRecipeSearchResults(params.word,params.ingredients,),
+      "/new/": () => this.showNew(),       //Seite um neues Rezept anzulegen
+      "/edit/:id/": params => this.showRecipeEdit(params.id),   //Seite um ein Rezept zu bearbeiten
+      "/display/:id/": params => this.showRecipeDisplay(params.id),   //Seite um ein Rezept anzuzeigen
     });
 
     this._router.hooks({
@@ -118,6 +158,10 @@ class App {
     this._switchVisibleView(view);
   }
 
+  showNew(){
+      let view= new RecipeNew(this);
+      this._switchVisibleView(view);
+  }
 
 
 
@@ -175,7 +219,7 @@ class App {
         className: "CSS-Klassenname",
  *      main: DOM-Element
  *   }
- * 
+ *
  * @param {Object} content Objekt mit den anzuzeigenden DOM-Elementen
  */
   _switchVisibleContent(content) {

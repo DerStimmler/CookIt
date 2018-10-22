@@ -51,9 +51,12 @@ class Recipes {
   async getAllRecipesByTitle() {
     return db.recipes.orderBy("title").toArray();
   }
+  async clear() {
+    return db.recipes.clear();
+}
 }
 
 export default {
   db,
-  Recipes
+  Recipes,
 };
