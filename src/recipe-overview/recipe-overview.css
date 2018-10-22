@@ -1,5 +1,15 @@
 /**Hier nur die .recipe-overview Klasse benutzen!*/
 
 .recipe-overview main {
-  color: yellow;
+    color:blue;
+    display:block;
+    margin:auto;
+}
+.recipe-overview .kasten {
+    display:flex;
+    margin:auto;
+}
+#rezepttitel{
+    font-size: 3em;
+    color:green;
 }

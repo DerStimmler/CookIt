@@ -41,15 +41,18 @@ class Recipes {
   }
   //alle Rezepte nach Datum sortiert als Array bekommen
   async getAllRecipesByDate() {
-    return db.recipes.sortBy(date).toArray();
+    return db.recipes.orderBy("date").toArray();
   }
   //alle Rezepte nach Titel sortiert als Array bekommen
   async getAllRecipesByTitle() {
-    return db.recipes.sortBy(title).toArray();
+    return db.recipes.orderBy("title").toArray();
   }
+  async clear() {
+    return db.recipes.clear();
+}
 }
 
 export default {
   db,
-  Recipes
+  Recipes,
 };
