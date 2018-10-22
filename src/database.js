@@ -2,7 +2,7 @@
 
 import Dexie from "dexie/dist/dexie.js";
 
-let db = new Dexie("CookIt");
+const db = new Dexie("CookIt");
 
 /**
  * Die Rezepte werden wie folgt als Objekt gespeichert:
@@ -34,6 +34,10 @@ class Recipes {
   //Rezept anhand von ID löschen
   async delete(id) {
     return db.recipes.delete(id);
+  }
+  //Ganze Datenbank löschen
+  async clear() {
+    return db.recipes.clear();
   }
   //Rezept anhand der ID auslesen
   async getById(id) {

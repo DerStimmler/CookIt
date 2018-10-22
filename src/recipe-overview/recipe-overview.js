@@ -67,6 +67,7 @@ class RecipeOverview {
         }
     });
 
+
     return {
       className: "recipe-overview",
       main: content

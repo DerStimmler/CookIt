@@ -1,0 +1,85 @@
+/*Hier nur die Klasse .recipe-search-results benutzen*/
+
+.recipe-search-results .button {
+  border-radius: 5px;
+  background-color: var(--olivegreen);
+  display: block;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 20%;
+  color: white;
+  border-color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+}
+
+.recipe-search-results .hidden {
+  display: none;
+}
+.recipe-search-results #hint {
+  text-align: center;
+  margin-top: 1em;
+  animation: blinkingText 0.8s infinite;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+  25% {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    color: rgba(0, 0, 0, 0);
+  }
+  75% {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    color: rgba(0, 0, 0, 1);
+  }
+}
+
+.recipe-search-results .item {
+  background-color: #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  width: 70%;
+}
+
+.recipe-search-results .item .image {
+  width: 20%;
+  height: 100%;
+}
+
+.recipe-search-results .item .title {
+  width: 60%;
+  padding-top: 0.8em;
+  padding-left: 0.5em;
+  padding-bottom: 0.8em;
+  font-size: 1.5em;
+  color: var(--olivegreen);
+}
+
+.recipe-search-results .item .star {
+  width: 20%;
+}
+
+.recipe-search-results .item a {
+  text-decoration: none;
+  color: var(--olivegreen);
+}
+
+.recipe-search-results .item img {
+  height: 100%;
+  width: 100%;
+}
+
+.recipe-search-results #error {
+  text-align: center;
+}

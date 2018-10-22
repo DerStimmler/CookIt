@@ -12,7 +12,7 @@ class RecipeEdit {
    * @param {Objekt} app  Zentrales App-Objekt der Anwendung
    * @param {String} id   ID des darzustellenden Songs
    */
-  constructor(app, id, mode) {
+  constructor(app, id) {
     this._app = app;
     this._id = id;
   }
