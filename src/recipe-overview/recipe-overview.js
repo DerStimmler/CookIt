@@ -1,6 +1,7 @@
 "use strict";
 
 import stylesheet from "./recipe-overview.css";
+import db from "../database.js";
 
 /**
  * View mit der Übersicht der vorhandenen Songs.
@@ -24,13 +25,12 @@ class RecipeOverview {
    * Methode App._switchVisibleContent()
    */
   onShow() {
-    // Anzuzeigende HTML-Elemente ermitteln
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "<h2>Übersicht</h2><br>Hier sieht man bald alle favorisierten Rezepte!";
-    
-    
+    test.innerHTML = "<h2>Übersicht</h2><br>Hier kommt später die Übersicht hin!";
+
     content.appendChild(test);
+
 
     return {
       className: "recipe-overview",

@@ -35,9 +35,12 @@ header > div {
 
 footer > div {
   background-color: var(--olivegreen);
-  height: 0.5em;
+  color: white;
+  height: 2em;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  text-align: bottom;
+  padding: 0.5em;
 }
 h1 {
   font-family: CallingHeart;

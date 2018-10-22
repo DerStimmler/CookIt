@@ -1,6 +1,7 @@
 "use strict";
 
 import stylesheet from "./recipe-search.css";
+import db from "/database.js";
 
 /**
  * View mit der Rezeptsuche
@@ -23,12 +24,44 @@ class RecipeSearch {
    * Methode App._switchVisibleContent()
    */
   onShow() {
-    // Anzuzeigende HTML-Elemente ermitteln
+    // Haupt-div erzeugen
     let content = document.createElement("div");
-    let test = document.createElement("p");
-    test.innerHTML = "<h2>Search</h2><br>Hier kann man bald Rezepte suchen!";
+    content.setAttribute("id", "main-div");
+    content.classList.remove("results");
 
-    content.appendChild(test);
+    //Begriff-Suchfeld
+    let input = document.createElement("INPUT");
+    input.setAttribute("id", "searchQuery");
+    input.setAttribute("placeholder", "Suchbegriff eingeben...");
+    content.appendChild(input);
+
+    //weitere Zutaten-Suchfeld
+    let input2 = document.createElement("INPUT");
+    input2.setAttribute("id", "searchIngredients");
+    input2.setAttribute("placeholder", "weitere Zutaten eingeben...");
+    content.appendChild(input2);
+
+    //Suchen Button
+    let searchButton = document.createElement("BUTTON");
+    searchButton.setAttribute("id", "searchButton");
+    searchButton.setAttribute("type", "button");
+    searchButton.setAttribute("class", "button");
+    searchButton.addEventListener("click", () => {
+      let value_searchQuery = document.getElementById("searchQuery").value;
+      let value_searchIngredients = document.getElementById("searchIngredients").value;
+      let href =
+        "/search/results/" +
+        value_searchQuery +
+        "/" +
+        value_searchIngredients +
+        "/";
+      //window.open(href, "_blank");
+      this._app.navigate(href);
+    });
+
+    let text = document.createTextNode("Suchen");
+    searchButton.appendChild(text);
+    content.appendChild(searchButton);
 
     return {
       className: "recipe-search",
@@ -55,6 +88,27 @@ class RecipeSearch {
   get title() {
     return "Suche";
   }
+}
+
+function showResults(searchQuery, searchIngredients) {
+  //Objekt erzeugen um DB samt Funktionen zu benutzen
+  var recipes = new db.Recipes();
+
+  let content = document.getElementById("main-div");
+  content.classList.add("results");
+  content.innerHTML = "";
+
+  //Neue Suche Button
+  let link = document.createElement("a");
+  link.setAttribute("href", "/search/");
+  link.setAttribute("data-navigo", "");
+  let newSearchButton = document.createElement("BUTTON");
+  newSearchButton.setAttribute("id", "newSearchButton");
+  newSearchButton.setAttribute("type", "button");
+  let text = document.createTextNode("Neue Suche");
+  newSearchButton.appendChild(text);
+  link.appendChild(newSearchButton);
+  content.appendChild(link);
 }
 
 //Ruft anhand der URL von RecipePuppy entsprechende Rezepte ab, verarbeitet Sie und liefert sie in einem Array zurück
@@ -84,8 +138,5 @@ function getRecipes(url) {
   }
   return results;
 }
-
-//zeigt die Rezepte, die als Array übergeben werden auf der Website an
-function showSearch(recipes) {}
 
 export default RecipeSearch;
