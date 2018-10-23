@@ -27,22 +27,13 @@ class RecipeOverview {
     var recipes = new db.Recipes();
     //Haupt-div erzeugen
     let content = document.createElement("div");
-    //let addButton = document.createElement("BUTTON");
     let page = document.createElement("a");
     page.setAttribute("href","/new/");
     page.setAttribute("data-navigo","");
+    page.setAttribute("class","button");
     page.innerHTML="Rezept hinzufügen";
     content.appendChild(page);
-    /*addButton.setAttribute("id","addButton");
-    addButton.setAttribute("type", "button");
-    content.appendChild(addButton);
-    addButton.innerHTML=<a href="/new/">"Rezepz hinzufügen"</a>;
-    addButton.onclick = function (){
-    <window.location.href='/new/'>Continue</button>
-}*/
     var ergebnisse= recipes.getAllRecipesByTitle().then(function(result){
-        //let rezeptkasten = document.createElement("div");
-        //rezeptkasten.setAttribute("class","kasten");
         //Test, ob Datenbank LEER oder nicht. JA=if und alle Daten auslesen+speichern in div. NEIN=Text anzeigen das es keine Favoriten gibt
         if (result.length === 0){
             let keinFav = document.createElement("div");
@@ -53,9 +44,14 @@ class RecipeOverview {
             for (var i=0; i<result.length;i++){
         //Aufbau EINES Feldes
     let rezeptkasten = document.createElement("div");
+    rezeptkasten.setAttribute("id",result[i].id);
     rezeptkasten.setAttribute("class","kasten");
                 let titel= document.createElement("div");
-                titel.setAttribute("id","rezepttitel");
+                titel.setAttribute("class","titel");
+                let link = document.createElement("a");
+                link.setAttribute("href","/display/"+result[i].id+"/");
+                link.setAttribute("data-navigo","");
+                titel.appendChild(link);
                 let stern= document.createElement("div");
                 let image= document.createElement("img");
         //Einfügen aller Teile in den Kasten
@@ -63,12 +59,14 @@ class RecipeOverview {
                 rezeptkasten.appendChild(titel);
                 rezeptkasten.appendChild(stern);
                 image.src=result[i].thumbnail;
-                titel.innerHTML=result[i].title;
+                link.innerHTML=result[i].title;
+                //titel.innerHTML=result[i].title;
                 stern.innerHTML ="I´m a STAR";
                 content.appendChild(rezeptkasten);
             }
         }
     });
+
 
     return {
       className: "recipe-overview",

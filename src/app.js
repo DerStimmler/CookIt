@@ -5,7 +5,9 @@ import stylesheet from "/app.css";
 import RecipeEdit from "./recipe-edit/recipe-edit.js";
 import RecipeOverview from "./recipe-overview/recipe-overview.js";
 import RecipeSearch from "./recipe-search/recipe-search.js";
+import RecipeSearchResults from "./recipe-search-results/recipe-search-results.js"
 import RecipeNew from "./recipe-new/recipe-new.js";
+import RecipeDisplay from "./recipe-display/recipe-display.js";
 import Info from "./info/info.js";
 import db from "/database.js";
 /**
@@ -68,6 +70,7 @@ class App {
       "*": () => this.showRecipeOverview(), //Rezeptübersicht (favorisierte Rezepte)
       "/info/": () => this.showInfo(),      //Infoseite
       "/search/": () => this.showRecipeSearch(),   //Suchseite
+      "/search/results/:word/:ingredients": params => this.showRecipeSearchResults(params.word,params.ingredients,),
       "/new/": () => this.showNew(),       //Seite um neues Rezept anzulegen
       "/edit/:id/": params => this.showRecipeEdit(params.id),   //Seite um ein Rezept zu bearbeiten
       "/display/:id/": params => this.showRecipeDisplay(params.id),   //Seite um ein Rezept anzuzeigen
@@ -98,7 +101,13 @@ class App {
     this._router.resolve();
   }
 
-
+  /**
+   * Navigo Router auffordern, eine neue URL zu laden
+   * @param {String} url URL der neuen Seite 
+   */
+  navigate(url) {
+    this._router.navigate(url);
+  }
 
 
 
@@ -140,8 +149,22 @@ class App {
     let view = new RecipeSearch(this);
     this._switchVisibleView(view);
   }
+
+  /**
+   * Aufruf der Ergebnisseite der Rezeptsuche.
+   * @return {Boolean} Flag, ob die neue Seite aufgerufen werden konnte
+   */
+  showRecipeSearchResults(word,ingredients) {
+    let view = new RecipeSearchResults(this, word, ingredients);
+    this._switchVisibleView(view);
+  }
+
   showNew(){
       let view= new RecipeNew(this);
+      this._switchVisibleView(view);
+  }
+  showRecipeDisplay(id){
+      let view= new RecipeDisplay(this, id);
       this._switchVisibleView(view);
   }
 
