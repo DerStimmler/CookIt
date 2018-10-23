@@ -1,5 +1,21 @@
 /**Hier nur die .recipe-new Klasse benutzen!*/
 
 .recipe-new main {
-  color: blue;
+        margin-left: 5em;
+}
+
+.recipe-new label {
+    list-style: none;
+}
+.recipe-new h2 {
+  color: var(--olivegreen);
+}
+
+.recipe-new button {
+    background-color: var(--olivegreen);
+    color: white;
+}
+
+.recipe-new form {
+
 }

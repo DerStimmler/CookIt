@@ -27,9 +27,23 @@ class RecipeNew {
   onShow() {
     let content = document.createElement("div");
     let test = document.createElement("p");
-    test.innerHTML = "<h2>NEW</h2><br>Hier werden neue Rezepte hinzugefügt!";
+
+/*    var zutaten = new Object({'value':'tomato', 'title':'Tomate'}, {'value':'onions', 'title':'Zwiebel'});
+    test.innerHTML = "<h2>Rezept hinzufügen</h2>";
+
+    //Gesamtes Array durchlaufen, um alle Daten zu erhalten
+    for (var i=0; i<zutaten.length, i++) {
+        //Aufbau EINES Feldes
+    }
+    */
+
+
+   test.innerHTML = "<h2>Rezept erstellen</h2> <form onsubmit =‘validateForm(event)’ action = ‘contact-form.php’ method = ‘POST’ > <!-- Name --> <label for=‘name’> Titel: <span class=‘required’>*</span> </label> <div class=‘side-by-side’> <input name=‘name’ type=‘text’ placeholder=Titel /> </div> <!-- Zutaten --><label for=‘zutaten’> Zutaten: <span class=‘required’>*</span> </label> <div class=‘side-by-side’> <input name=‘ingredients’ type=‘text’ placeholder=Zutat /> </div> <!-- Das Rezept --> <label for=‘beschreibung’> Beschreibung: <span class=‘required’>*</span> </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ placeholder=Beschreibung /> </textarea>";
 
     content.appendChild(test);
+    let button = document.createElement("button");
+    button.innerHTML = "<p>Rezept speichern</p>";
+    content.appendChild(button);
 
     return {
       className: "recipe-new",
