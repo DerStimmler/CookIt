@@ -69,6 +69,7 @@
 
 .recipe-search-results .item .star {
   width: 20%;
+  height: 100%;
 }
 
 .recipe-search-results .item a {
@@ -117,7 +118,6 @@
 }
 
 .recipe-search-results .star i {
-  color: red;
   font-size: 3em;
   width: 100%;
   height: 100%;

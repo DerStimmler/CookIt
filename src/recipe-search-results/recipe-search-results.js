@@ -10,6 +10,8 @@ import db from "/database.js";
 
  //Sammlung von allen abgerufenen Rezepten
  var allResults = [];
+ //ID zum identifizieren von Rezepten
+ var IDs = 0;
 
 class RecipeSearchResults {
   /**
@@ -33,6 +35,10 @@ class RecipeSearchResults {
    * Methode App._switchVisibleContent()
    */
   onShow() {
+    //allResults zurück setzen
+    allResults = [];
+    //IDs zurück setzen
+    IDs = 0;
     //Pagecount um zu wissen, welche RecipePuppy Seite abgerufen werden soll
     var pagecount = 1;
 
@@ -169,13 +175,13 @@ else{
   console.log("3. zum Print bereit:", results);
 
   //Hier wird das neu gelieferte Array results an das Array allResults dran gehängt, sodass man immer absolut alle Rezepte in diesem Array gespeichert hat
-  allResults.push.apply(allResults, results); 
+  allResults.push.apply(allResults, results);
   console.log("Alle Results", allResults);
 
 
   //Objekt erzeugen um DB samt Funktionen zu benutzen
   var recipes = new db.Recipes();
-  
+
   //"Suchen..." ausblenden
   let hint = document.getElementById("hint");
   content.removeChild(hint);
@@ -188,7 +194,7 @@ else{
     //Rezeptkasten
     let rezeptkasten = document.createElement("div");
     rezeptkasten.setAttribute("class", "item");
-    rezeptkasten.setAttribute("id", i);
+    rezeptkasten.setAttribute("id", IDs);
 
 
     //Image
@@ -230,6 +236,7 @@ else{
 
 
     content.appendChild(rezeptkasten);
+    IDs++;
   }
 
 
