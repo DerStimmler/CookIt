@@ -1,24 +1,24 @@
 $heart-red: #cd0928;
-$heart-default-color: rgb(255, 0, 0);
+$heart-default-color: rgb(0, 0, 0);
 
-#like-button:hover {
+i :hover {
     cursor: pointer;
     color: $heart-red;
 }
 
-#like-button.not-liked {
+.not-liked {
     color: $heart-default-color;
 }
 
-#like-button.not-liked:hover {
+.not-liked:hover {
     color: $heart-red;
 }
 
-#like-button.liked {
+.liked {
     color: $heart-red;
 }
 
-#like-button.liked-shaked {
+.liked-shaked {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0) rotate(0deg);
     transform: rotate(0deg);
