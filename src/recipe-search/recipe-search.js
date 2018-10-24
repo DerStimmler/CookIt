@@ -49,13 +49,19 @@ class RecipeSearch {
     searchButton.addEventListener("click", () => {
       let value_searchQuery = document.getElementById("searchQuery").value;
       let value_searchIngredients = document.getElementById("searchIngredients").value;
-      let href =
+      let href;
+      if(value_searchQuery === ""){
+        value_searchQuery = " ";
+      }
+      if (value_searchIngredients === ""){
+        value_searchIngredients = " ";
+      }
+      href =
         "/search/results/" +
         value_searchQuery +
         "/" +
         value_searchIngredients +
         "/";
-      //window.open(href, "_blank");
       this._app.navigate(href);
     });
 

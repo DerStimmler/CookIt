@@ -1,13 +1,16 @@
 "use strict";
 
 import stylesheet from "./recipe-search-results.css";
-import "../fav_star.scss";
-import "./arrow.scss";
+import "../fav_heart.scss";
 import db from "/database.js";
 
 /**
  * View mit der Rezeptsuche
  */
+
+ //Sammlung von allen abgerufenen Rezepten
+ var allResults = [];
+
 class RecipeSearchResults {
   /**
    * Konstruktor.
@@ -30,8 +33,6 @@ class RecipeSearchResults {
    * Methode App._switchVisibleContent()
    */
   onShow() {
-    //Objekt erzeugen um DB samt Funktionen zu benutzen
-    var recipes = new db.Recipes();
     //Pagecount um zu wissen, welche RecipePuppy Seite abgerufen werden soll
     var pagecount = 1;
 
@@ -51,16 +52,18 @@ class RecipeSearchResults {
     content.appendChild(newSearchButton);
 
     //weitere Ergebnisse laden
-    let arrow = document.createElement("div");
-    arrow.classList.add("arrow");
-    arrow.classList.add("hidden");
+    let arrowdiv = document.createElement("div");
+    arrowdiv.setAttribute("id","arrowdiv");
+    let arrow = document.createElement("i");
+    arrowdiv.classList.add("hidden");
     arrow.setAttribute("id","arrow");
     arrow.addEventListener("click", () => {
         pagecount++;
         console.log(pagecount);
         showSearch(content, this._ingredients, this._word, pagecount);
     });
-    content.appendChild(arrow);
+    arrowdiv.appendChild(arrow);
+    content.appendChild(arrowdiv);
 
     //Ergebnisse anzeigen
     showSearch(content, this._ingredients, this._word, pagecount);
@@ -102,7 +105,7 @@ function showSearch(content, ingredients, word, pagecount) {
     hint.innerHTML = "Suchen...";
     content.appendChild(hint);
     let apiURL =
-      "https://cors-anywhere.herokuapp.com/http://www.recipepuppy.com/api/?i=" +
+      "https://cors-anywhere.herokuapp.com/http://recipepuppy.com/api/?i=" +
       ingredients +
       "&g=" +
       word +
@@ -126,8 +129,9 @@ function getRecipes(url, content) {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var response = JSON.parse(xhr.responseText);
       results = response.results;
-      console.log("1", results);
+      console.log("1. Abgerufen:", results);
 
+      //Erhaltene Rezepte weiter verarbeiten
       for (let i = 0; i < results.length; i++) {
         results[i].id =
           Date.now() +
@@ -138,14 +142,21 @@ function getRecipes(url, content) {
         results[i].extern = true; //Rezept ist von Extern (RecipePuppy)
         results[i].date = null; //Noch kein Favorisierungsdatum vorhanden
       }
-      console.log("2", results);
+      console.log("2. weiter vearbeitet:", results);
       printResults(results, content);
+    }
+    else if (xhr.status == 503){
+      let errorText = document.createElement("div");
+      errorText.setAttribute("id","error503");
+      errorText.innerHTML = "Keine Verbindung zur API möglich!";
+      content.appendChild(errorText);
     }
   }
 }
 
 
 function printResults(results, content) {
+//Wenn keine Rezepte geliefert wurden Nachricht anzeigen
 if (results.length === 0){
     let errorText = document.createElement("div");
     errorText.setAttribute("id","error");
@@ -155,15 +166,31 @@ if (results.length === 0){
     content.removeChild(hint);
 }
 else{
-  console.log("3", results);
+  console.log("3. zum Print bereit:", results);
+
+  //Hier wird das neu gelieferte Array results an das Array allResults dran gehängt, sodass man immer absolut alle Rezepte in diesem Array gespeichert hat
+  allResults.push.apply(allResults, results); 
+  console.log("Alle Results", allResults);
+
+
+  //Objekt erzeugen um DB samt Funktionen zu benutzen
+  var recipes = new db.Recipes();
+  
+  //"Suchen..." ausblenden
   let hint = document.getElementById("hint");
   content.removeChild(hint);
+
+
   //Ergebnisse anzeigen
   for (let i = 0; i < results.length; i++) {
+
+
     //Rezeptkasten
     let rezeptkasten = document.createElement("div");
     rezeptkasten.setAttribute("class", "item");
-    rezeptkasten.setAttribute("id", results[i].id);
+    rezeptkasten.setAttribute("id", i);
+
+
     //Image
     let image = document.createElement("div");
     image.setAttribute("class", "image");
@@ -171,6 +198,8 @@ else{
     img.src = results[i].thumbnail;
     image.appendChild(img);
     rezeptkasten.appendChild(image);
+
+
     //Title
     let title = document.createElement("div");
     title.setAttribute("class", "title");
@@ -180,19 +209,51 @@ else{
     link.innerHTML = results[i].title;
     title.appendChild(link);
     rezeptkasten.appendChild(title);
+
+
     //Star
     let star = document.createElement("div");
     star.setAttribute("class", "star");
-    star.innerHTML =
-      '<div class="Fav"><input id="fav-checkbox" class="Fav-checkbox" type="checkbox"><label for="fav-checkbox" class="Fav-label"><span class="Fav-label-text">Favourite</span></label><div class="Fav-bloom"></div><div class="Fav-sparkle"><div class="Fav-sparkle-line"></div><div class="Fav-sparkle-line"></div><div class="Fav-sparkle-line"></div><div class="Fav-sparkle-line"></div><div class="Fav-sparkle-line"></div></div><svg class="Fav-star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Star Icon</title><path d="M36.14,3.09l5.42,17.78H59.66a4.39,4.39,0,0,1,2.62,7.87L47.48,40.14,53,58.3a4.34,4.34,0,0,1-6.77,4.78L32,52l-14.26,11A4.34,4.34,0,0,1,11,58.27l5.55-18.13L1.72,28.75a4.39,4.39,0,0,1,2.62-7.87h18.1L27.86,3.09A4.32,4.32,0,0,1,36.14,3.09Z"/></svg></div>';
+    let iHeart = document.createElement("i");
+    iHeart.setAttribute("class","fa fa-2x fa-heart-o not-liked");
+    iHeart.addEventListener("click", doLikeButton);
+    iHeart.addEventListener("click", () =>{
+      let id = event.target.parentNode.parentNode.getAttribute("id");
+      let newRecipe = allResults[id];
+      newRecipe.fav = true;
+      newRecipe.date = new Date();
+      recipes.saveNew(newRecipe);
+      console.log("Rezept " + id + " wurde gespeichert!")
+    });
+    star.appendChild(iHeart);
     rezeptkasten.appendChild(star);
+
 
     content.appendChild(rezeptkasten);
   }
-  let arrow = document.getElementById("arrow");
-  arrow.classList.remove("hidden");
-  content.appendChild(arrow);
+
+
+  let arrowdiv = document.getElementById("arrowdiv");
+  arrowdiv.classList.remove("hidden");
+  content.appendChild(arrowdiv);
 }
+}
+
+//Button Zeug
+function doLikeButton(e) {
+  toggleButton(e.target);
+}
+
+function toggleButton(button) {
+  button.classList.remove('liked-shaked');
+  button.classList.toggle('liked');
+  button.classList.toggle('not-liked');
+  button.classList.toggle('fa-heart-o');
+  button.classList.toggle('fa-heart');
+
+  if(button.classList.contains("liked")) {
+      button.classList.add('liked-shaked');
+  }
 }
 
 export default RecipeSearchResults;

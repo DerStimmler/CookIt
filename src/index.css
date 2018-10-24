@@ -36,7 +36,6 @@ header > div {
 footer > div {
   background-color: var(--olivegreen);
   color: white;
-  height: 2em;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   text-align: bottom;
