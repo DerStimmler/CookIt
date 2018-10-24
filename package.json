@@ -39,6 +39,7 @@
     "shelljs": "^0.8.2"
   },
   "dependencies": {
+    "cors-anywhere": "^0.4.1",
     "sass": "^1.14.3"
   }
 }

@@ -73,7 +73,7 @@ class App {
       "/search/results/:word/:ingredients": params => this.showRecipeSearchResults(params.word,params.ingredients,),
       "/new/": () => this.showNew(),       //Seite um neues Rezept anzulegen
       "/edit/:id/": params => this.showRecipeEdit(params.id),   //Seite um ein Rezept zu bearbeiten
-      "/display/:id/": params => this.showRecipeDisplay(params.id),   //Seite um ein Rezept anzuzeigen
+      "/display/:id/": params => this.showRecipeDisplay(params.id)   //Seite um ein Rezept anzuzeigen
     });
 
     this._router.hooks({
@@ -103,7 +103,7 @@ class App {
 
   /**
    * Navigo Router auffordern, eine neue URL zu laden
-   * @param {String} url URL der neuen Seite 
+   * @param {String} url URL der neuen Seite
    */
   navigate(url) {
     this._router.navigate(url);

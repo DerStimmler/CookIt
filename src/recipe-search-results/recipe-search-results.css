@@ -22,6 +22,7 @@
   text-align: center;
   margin-top: 1em;
   animation: blinkingText 0.8s infinite;
+  padding-left:20px;
 }
 
 @keyframes blinkingText {
@@ -82,4 +83,44 @@
 
 .recipe-search-results #error {
   text-align: center;
+}
+
+.recipe-search-results #arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    left: 50%;
+    right: 50%;
+    animation: blinkingArrow 2s infinite;
+}
+
+@keyframes blinkingArrow {
+  0% {
+    transform: scale(1)rotate(45deg);
+  }
+  40% {
+    transform: scale(1.75)rotate(45deg);
+  }
+  60% {
+    transform: scale(1.75)rotate(45deg);
+  }
+  100% {
+    transform: scale(1)rotate(45deg);
+  }
+}
+
+.recipe-search-results #arrowdiv {
+  padding-left: 50%;
+  padding-right: 50%;
+}
+
+.recipe-search-results .star i {
+  color: red;
+  font-size: 3em;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 25%;
 }

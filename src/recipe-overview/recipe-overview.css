@@ -1,26 +1,59 @@
 /**Hier nur die .recipe-overview Klasse benutzen!*/
 
 .recipe-overview main {
-    color:blue;
     display:block;
     margin:auto;
 }
 .recipe-overview .kasten {
-    display:flex;
-    margin:auto;
+    background-color: #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 1em;
+    display: flex;
+    width: 70%;
 }
-.recipe-overview .button{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin:auto;
+.recipe-overview .button {
+  border-radius: 5px;
+  background-color: var(--olivegreen);
+  display: block;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 20%;
+  color: white;
+  border-color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
 }
 .recipe-overview .titel{
-    color: green;
+    width: 60%;
+    padding-top: 0.8em;
+    padding-left: 0.5em;
+    padding-bottom: 0.8em;
+    font-size: 1.5em;
+    color: var(--olivegreen);
+}
+.recipe-overview .stern{
+    width: 20%;
+}
+.recipe-overview .heart{
     font-size: 3em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 25%;
+}
+.recipe-overview .imgfeld{
+    width: 20%;
+    height: 100%;
+}
+.recipe-overview .img{
+    height: 100%;
+    width: 100%;
+}
+.recipe-overview .a{
+    text-decoration: none;
+    color: var(--olivegreen);
 }

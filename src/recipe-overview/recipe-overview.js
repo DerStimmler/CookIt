@@ -1,6 +1,7 @@
 "use strict";
 
 import stylesheet from "./recipe-overview.css";
+import "../fav_heart.scss";
 import db from "/database.js";
 /**
  * View mit der Übersicht der vorhandenen Songs.
@@ -27,14 +28,18 @@ class RecipeOverview {
     var recipes = new db.Recipes();
     //Haupt-div erzeugen
     let content = document.createElement("div");
-    let page = document.createElement("a");
-    page.setAttribute("href","/new/");
-    page.setAttribute("data-navigo","");
-    page.setAttribute("class","button");
-    page.innerHTML="Rezept hinzufügen";
-    content.appendChild(page);
+    let button = document.createElement("button");
+    button.innerHTML="Rezept hinzufügen";
+    button.setAttribute("id", "button");
+    button.setAttribute("type", "button");
+    button.setAttribute("class", "button");
+    button.addEventListener("click", () => {
+      let href ="/new/";
+      this._app.navigate(href);
+    });
+    content.appendChild(button);
     var ergebnisse= recipes.getAllRecipesByTitle().then(function(result){
-        //Test, ob Datenbank LEER oder nicht. JA=if und alle Daten auslesen+speichern in div. NEIN=Text anzeigen das es keine Favoriten gibt
+        //Test, ob Datenbank LEER oder nicht. JA=Text anzeigen das es keine Favoriten gibt, NEIN=Schleife, die alle Rezepte ausgibt
         if (result.length === 0){
             let keinFav = document.createElement("div");
             keinFav.innerHTML="Keine Rezepte vorhanden";
@@ -42,31 +47,60 @@ class RecipeOverview {
         } else {
         // Gesamtes Array durchlaufen um alle Daten zu erhalten
             for (var i=0; i<result.length;i++){
-        //Aufbau EINES Feldes
-    let rezeptkasten = document.createElement("div");
-    rezeptkasten.setAttribute("id",result[i].id);
-    rezeptkasten.setAttribute("class","kasten");
-                let titel= document.createElement("div");
-                titel.setAttribute("class","titel");
-                let link = document.createElement("a");
-                link.setAttribute("href","/display/"+result[i].id+"/");
-                link.setAttribute("data-navigo","");
-                titel.appendChild(link);
-                let stern= document.createElement("div");
+                //Aufbau EINES Feldes (beinhaltet immer 1 Rezept sprich Bild+Titel+Favorit)
+                let rezeptkasten = document.createElement("div");
+                rezeptkasten.setAttribute("id",result[i].id);
+                rezeptkasten.setAttribute("class","kasten");
+
+                // BILD
+                let imagefeld=document.createElement("div");
+                imagefeld.setAttribute("class", "imgfeld");
                 let image= document.createElement("img");
-        //Einfügen aller Teile in den Kasten
-                rezeptkasten.appendChild(image);
-                rezeptkasten.appendChild(titel);
-                rezeptkasten.appendChild(stern);
+                image.setAttribute("class", "img");
+                imagefeld.appendChild(image);
                 image.src=result[i].thumbnail;
+                rezeptkasten.appendChild(imagefeld);
+
+                // Titel bzw. Rezeptname
+                let titel= document.createElement("div");
+                titel.setAttribute("class", "titel");
+                let link = document.createElement("a");
+                link.setAttribute("class","a");
+                link.setAttribute("href", "/display/"+rezeptkasten.getAttribute("id")+"/");
+                link.setAttribute("data-navigo","");
                 link.innerHTML=result[i].title;
                 //titel.innerHTML=result[i].title;
-                stern.innerHTML ="I´m a STAR";
+                /*link.addEventListener("click", () => {
+                let href ="/display/"+rezeptkasten.getAttribute("id")+"/";
+                this._app.navigate(href);
+                });*/
+                titel.appendChild(link);
+                rezeptkasten.appendChild(titel);
+                // Favoritenstern (Kick=> Löschen)
+                //let stern= document.createElement("div");
+                //stern.setAttribute("class", "stern");
+                //stern.innerHTML ="I´m a STAR";
+
+                //Star
+                let stern = document.createElement("div");
+                stern.setAttribute("class", "stern");
+                let iHeart = document.createElement("i");
+                //iHeart.setAttribute("class", "heart");
+                iHeart.setAttribute("class","fa fa-2x liked fa-heart liked-shaked heart");
+                iHeart.addEventListener("click", doLikeButton);
+                iHeart.addEventListener("click", () =>{
+                  let id = event.target.parentNode.parentNode.getAttribute("id");
+                  let deleteRecipe = result[id];
+                  recipes.delete(deleteRecipe);
+                  console.log("Rezept " + id + " wurde gelöscht!")
+                });
+                stern.appendChild(iHeart);
+                rezeptkasten.appendChild(stern);
+                //Einfügen aller Teile in den OBERSTEN DIV
                 content.appendChild(rezeptkasten);
             }
         }
     });
-
 
     return {
       className: "recipe-overview",
@@ -92,6 +126,23 @@ class RecipeOverview {
    */
   get title() {
     return "Übersicht";
+  }
+}
+
+//Button Zeug
+function doLikeButton(e) {
+  toggleButton(e.target);
+}
+
+function toggleButton(button) {
+  button.classList.remove('liked-shaked');
+  button.classList.toggle('liked');
+  button.classList.toggle('not-liked');
+  button.classList.toggle('fa-heart-o');
+  button.classList.toggle('fa-heart');
+
+  if(button.classList.contains("liked")) {
+      button.classList.add('liked-shaked');
   }
 }
 
