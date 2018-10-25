@@ -139,11 +139,7 @@ function getRecipes(url, content) {
 
       //Erhaltene Rezepte weiter verarbeiten
       for (let i = 0; i < results.length; i++) {
-        results[i].id =
-          Date.now() +
-          Math.random()
-            .toString()
-            .slice(2); //Erstellen einer einzigartigen ID
+        results[i].id = parseInt(Date.now() + Math.random().toString().slice(2)); //Erstellen einer einzigartigen ID
         results[i].fav = false; //Rezept ist nach dem Abrufen nicht favorisiert
         results[i].extern = true; //Rezept ist von Extern (RecipePuppy)
         results[i].date = null; //Noch kein Favorisierungsdatum vorhanden
