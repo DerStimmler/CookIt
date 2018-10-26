@@ -1,7 +1,7 @@
 "use strict";
 
 import stylesheet from "./recipe-display.css";
-
+import db from "/database.js";
 /**
  * View zur Anzeige oder zum Bearbeiten eines Rezept.
  */
@@ -27,10 +27,40 @@ class RecipeDisplay {
    * Methode App._switchVisibleContent()
    */
   onShow() {
-    let content = document.createElement("div");
+      //Datenbank erzeugen
+      var recipes = new db.Recipes();
+      //Haupt-div erzeugen
+      let content = document.createElement("div");
+
     let test = document.createElement("p");
     test.innerHTML = "<h2>Display</h2><br>Hier kann man bald Rezepte sehen!";
 
+    //var ergebnisse= recipes.getById(parseInt(this._id)).then((result)=>{
+    let ergebnisse = recipes.getById(parseInt(this._id));
+    ergebnisse.then((result)=>{
+    console.log(result);
+    let rezeptkasten = document.createElement("div");
+    rezeptkasten.setAttribute("id", result["id"]);
+    rezeptkasten.setAttribute("class","kasten");
+
+    // BILD
+    let imagefeld=document.createElement("div");
+    imagefeld.setAttribute("class", "imgfeld");
+    let image= document.createElement("img");
+    image.setAttribute("class", "img");
+    imagefeld.appendChild(image);
+    image.src=result["thumbnail"];
+    rezeptkasten.appendChild(imagefeld);
+
+                    // Titel bzw. Rezeptname
+                    let titel= document.createElement("div");
+                    titel.setAttribute("class", "titel");
+                    titel.innerHTML=(result["title"]);
+                    rezeptkasten.appendChild(titel);
+
+    content.appendChild(rezeptkasten);
+});
+    //});
     content.appendChild(test);
 
     return {

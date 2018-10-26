@@ -28,6 +28,27 @@
   text-align: center;
   padding: 10px;
 }
+.recipe-overview .sortbutton {
+    display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+.recipe-overview .transparent{
+    opacity: 0.2;
+}
+#sortbutton{
+    height: 50px;
+    width:50px;
+    margin-bottom: 1em;
+    background: url(/img/datesort.png);
+    background-repeat: no-repeat;
+}
+#alphabutton{
+        height: 50px;
+        width:50px;
+        background: url(/img/sort.png);
+        background-repeat: no-repeat;
+}
 .recipe-overview .titel{
     width: 60%;
     padding-top: 0.8em;

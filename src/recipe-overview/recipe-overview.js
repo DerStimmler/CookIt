@@ -6,6 +6,8 @@ import db from "/database.js";
 /**
  * View mit der Übersicht der vorhandenen Songs.
  */
+ var gdatesort="sortbutton transparent";
+ var gtitlesort="sortbutton";
 class RecipeOverview {
   /**
    * Konstruktor.
@@ -28,17 +30,63 @@ class RecipeOverview {
     var recipes = new db.Recipes();
     //Haupt-div erzeugen
     let content = document.createElement("div");
-    let button = document.createElement("button");
-    button.innerHTML="Rezept hinzufügen";
-    button.setAttribute("id", "button");
-    button.setAttribute("type", "button");
-    button.setAttribute("class", "button");
-    button.addEventListener("click", () => {
-      let href ="/new/";
-      this._app.navigate(href);
+grundbauladen(content, this._app);
+    //Erstellen Grundgerüst
+    function grundbauladen(content, app){
+        //Button Rezept hinzufügen
+        let button = document.createElement("button");
+        button.innerHTML="Rezept hinzufügen";
+        button.setAttribute("id", "button");
+        button.setAttribute("type", "button");
+        button.setAttribute("class", "button");
+        button.addEventListener("click", () => {
+          let href ="/new/";
+          app.navigate(href);
+        });
+        content.appendChild(button);
+
+        //DatumsortButton
+        let datumsort = document.createElement("div");
+        datumsort.setAttribute("id", "sortbutton");
+        datumsort.setAttribute("class", gdatesort);
+        datumsort.addEventListener("click", () =>{
+            if (event.target.classList.contains("transparent")){
+            event.target.classList.remove("transparent");
+            gdatesort="sortbutton";
+            gtitlesort="sortbutton  transparent";
+        } else {}
+            content.innerHTML="";
+            grundbauladen(content,app);
+            var ergebnisse= recipes.getAllRecipesByDate().then((result)=>{
+                inhaltladen(result, app);
+            });
+            });
+        content.appendChild(datumsort);
+
+        //TitelsortButton
+        let titelsort = document.createElement("div");
+        titelsort.setAttribute("id", "alphabutton");
+        //titelsort.setAttribute("type", "button");
+        titelsort.setAttribute("class", gtitlesort);
+        titelsort.addEventListener("click", () =>{
+            if (event.target.classList.contains("transparent")){
+            event.target.classList.remove("transparent");
+            gtitlesort="sortbutton";
+            gdatesort="sortbutton transparent";
+        } else {}
+            content.innerHTML="";
+            grundbauladen(content,app);
+            var ergebnisse= recipes.getAllRecipesByTitle().then((result)=>{
+                inhaltladen(result, app);
+            });
+            });
+        content.appendChild(titelsort);
+    }
+        var ergebnisse= recipes.getAllRecipesByTitle().then((result)=>{
+        inhaltladen(result, this._app);
     });
-    content.appendChild(button);
-    var ergebnisse= recipes.getAllRecipesByTitle().then(function(result){
+    //Funktio um den Inhalt komplett zu laden und darzustellen
+    function inhaltladen(result, app){
         //Test, ob Datenbank LEER oder nicht. JA=Text anzeigen das es keine Favoriten gibt, NEIN=Schleife, die alle Rezepte ausgibt
         if (result.length === 0){
             let keinFav = document.createElement("div");
@@ -65,21 +113,14 @@ class RecipeOverview {
                 let titel= document.createElement("div");
                 titel.setAttribute("class", "titel");
                 let link = document.createElement("a");
-                link.setAttribute("class","a");
-                link.setAttribute("href", "/display/"+rezeptkasten.getAttribute("id")+"/");
-                link.setAttribute("data-navigo","");
                 link.innerHTML=result[i].title;
                 //titel.innerHTML=result[i].title;
-                /*link.addEventListener("click", () => {
+                link.addEventListener("click", () => {
                 let href ="/display/"+rezeptkasten.getAttribute("id")+"/";
-                this._app.navigate(href);
-                });*/
+                app.navigate(href);
+                });
                 titel.appendChild(link);
                 rezeptkasten.appendChild(titel);
-                // Favoritenstern (Kick=> Löschen)
-                //let stern= document.createElement("div");
-                //stern.setAttribute("class", "stern");
-                //stern.innerHTML ="I´m a STAR";
 
                 //Star
                 let stern = document.createElement("div");
@@ -87,12 +128,13 @@ class RecipeOverview {
                 let iHeart = document.createElement("i");
                 //iHeart.setAttribute("class", "heart");
                 iHeart.setAttribute("class","fa fa-2x liked fa-heart liked-shaked heart");
-                iHeart.addEventListener("click", doLikeButton);
                 iHeart.addEventListener("click", () =>{
+                    if (confirm("Soll das Rezept wirklich gelöscht werden?")==true){
+                  doLikeButton(event);
                   let id = event.target.parentNode.parentNode.getAttribute("id");
-                  let deleteRecipe = result[id];
-                  recipes.delete(deleteRecipe);
-                  console.log("Rezept " + id + " wurde gelöscht!")
+                  recipes.delete(parseInt(id));
+                                    console.log("Rezept " + id + " wurde gelöscht!")
+                }
                 });
                 stern.appendChild(iHeart);
                 rezeptkasten.appendChild(stern);
@@ -100,7 +142,7 @@ class RecipeOverview {
                 content.appendChild(rezeptkasten);
             }
         }
-    });
+    }
 
     return {
       className: "recipe-overview",
