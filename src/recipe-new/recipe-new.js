@@ -146,8 +146,8 @@ class RecipeNew {
      * Diese Funktion erstellt eine unique ID anhand der aktuellen Zeit (TIMESTAMP) und einer "zufällig" generierten Nummer mittels Math.random().
      */
     function generateID(){
-        let uniqueID = Date.now() + Math.random().toString().slice(2);
-        return uniqueID;
+        let uniqueID = Date.now() + Math.random().toString().slice(2).subString(0,5);
+        return parseint(uniqueID);
     }
 
     /**
