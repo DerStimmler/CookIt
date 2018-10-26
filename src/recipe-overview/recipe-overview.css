@@ -4,6 +4,9 @@
     display:block;
     margin:auto;
 }
+.recipe-overview .allebuttons{
+ display: flex;
+}
 .recipe-overview .kasten {
     background-color: #cccccc;
     border-radius: 5px;
@@ -14,13 +17,17 @@
     width: 70%;
 }
 .recipe-overview .button {
+    margin-right: auto;
+    margin-left: 15%;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    text-align: left;
+    padding-left: 0.2em;
   border-radius: 5px;
   background-color: var(--olivegreen);
   display: block;
-  margin: auto;
-  margin-top: 1.5em;
-  margin-bottom: 1em;
   width: 70%;
+  height:50px;
   color: white;
   border-color: white;
   font-weight: bold;
@@ -39,15 +46,26 @@
 #sortbutton{
     height: 50px;
     width:50px;
-    margin-bottom: 1em;
+    margin-top: 1.5em;
     background: url(/img/datesort.png);
     background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+    right: 0;
+    padding-right: 0.2em;
 }
 #alphabutton{
         height: 50px;
         width:50px;
+        margin-top: 1.5em;
         background: url(/img/sort.png);
         background-repeat: no-repeat;
+        margin-left: auto;
+        margin-right: 0;
+        text-align: right;
+        right: 0;
+        padding-right: 0.2em;
 }
 .recipe-overview .titel{
     width: 60%;

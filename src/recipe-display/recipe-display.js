@@ -32,11 +32,11 @@ class RecipeDisplay {
       //Haupt-div erzeugen
       let content = document.createElement("div");
 
-    let test = document.createElement("p");
-    test.innerHTML = "<h2>Display</h2><br>Hier kann man bald Rezepte sehen!";
-
     //var ergebnisse= recipes.getById(parseInt(this._id)).then((result)=>{
     let ergebnisse = recipes.getById(parseInt(this._id));
+    //Kasten für BILD UND DANEBEN Titel
+    let oberteil = document.createElement("div");
+    oberteil.setAttribute("class","oberteil");
     ergebnisse.then((result)=>{
     console.log(result);
     let rezeptkasten = document.createElement("div");
@@ -50,18 +50,48 @@ class RecipeDisplay {
     image.setAttribute("class", "img");
     imagefeld.appendChild(image);
     image.src=result["thumbnail"];
-    rezeptkasten.appendChild(imagefeld);
+    oberteil.appendChild(imagefeld);
 
                     // Titel bzw. Rezeptname
                     let titel= document.createElement("div");
                     titel.setAttribute("class", "titel");
                     titel.innerHTML=(result["title"]);
-                    rezeptkasten.appendChild(titel);
+                    oberteil.appendChild(titel);
+    content.appendChild(oberteil);
+    //content.appendChild(rezeptkasten);
 
-    content.appendChild(rezeptkasten);
+
+    //Löschen
+    let trash = document.createElement("div");
+    trash.setAttribute("id", "trash");
+    trash.setAttribute("class", "trashbutton");
+    trash.addEventListener("click", () =>{
+        if (confirm("Soll das Rezept wirklich gelöscht werden?")==true){
+            let id = result["id"];
+            recipes.delete(parseInt(id));
+            console.log("Rezept " + id + " wurde gelöscht!")
+            }
+        });
+        oberteil.appendChild(trash);
+
+
+
+    let zutaten = document.createElement("div");
+    zutaten.innerHTML="Zutaten: "+result["ingredients"];
+    content.appendChild(zutaten);
+
+    if (result["extern"]==false){
+        let beschreibung = document.createElement("div");
+        //beschreibung.innerHTML="Beschreibung: "+result["description"];
+        beschreibung.innerHTML="Beschreibung:";
+        content.appendChild(beschreibung);
+    } else {
+        let externlink = document.createElement("div");
+        externlink.innerHTML= result["href"];
+        content.appendChild(externlink);
+    }
 });
     //});
-    content.appendChild(test);
 
     return {
       className: "recipe-display",

@@ -33,6 +33,8 @@ class RecipeOverview {
 grundbauladen(content, this._app);
     //Erstellen Grundgerüst
     function grundbauladen(content, app){
+        let topbutton= document.createElement("div");
+        topbutton.setAttribute("class","allebuttons");
         //Button Rezept hinzufügen
         let button = document.createElement("button");
         button.innerHTML="Rezept hinzufügen";
@@ -43,7 +45,8 @@ grundbauladen(content, this._app);
           let href ="/new/";
           app.navigate(href);
         });
-        content.appendChild(button);
+        topbutton.appendChild(button);
+        //content.appendChild(button);
 
         //DatumsortButton
         let datumsort = document.createElement("div");
@@ -61,7 +64,8 @@ grundbauladen(content, this._app);
                 inhaltladen(result, app);
             });
             });
-        content.appendChild(datumsort);
+        topbutton.appendChild(datumsort);
+        //content.appendChild(datumsort);
 
         //TitelsortButton
         let titelsort = document.createElement("div");
@@ -80,7 +84,9 @@ grundbauladen(content, this._app);
                 inhaltladen(result, app);
             });
             });
-        content.appendChild(titelsort);
+        topbutton.appendChild(titelsort);
+        //content.appendChild(titelsort);
+        content.appendChild(topbutton);
     }
         var ergebnisse= recipes.getAllRecipesByTitle().then((result)=>{
         inhaltladen(result, this._app);
