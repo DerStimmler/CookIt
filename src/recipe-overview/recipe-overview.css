@@ -17,13 +17,13 @@
   border-radius: 5px;
   background-color: var(--olivegreen);
   display: block;
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-top: 1em;
+  margin: auto;
+  margin-top: 1.5em;
   margin-bottom: 1em;
   width: 70%;
   color: white;
   border-color: white;
+  font-weight: bold;
   text-decoration: none;
   text-align: center;
   padding: 10px;

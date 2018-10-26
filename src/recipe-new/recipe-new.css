@@ -14,8 +14,27 @@
 .recipe-new button {
     background-color: var(--olivegreen);
     color: white;
+    text-align: center;
+    border: solid 1px #CCCCCC;
 }
 
-.recipe-new form {
+.recipe-new input, textarea {
+    width: 20em;
+    height: 2em;
+    border: solid 1px #CCCCCC;
+    border-radius: 3px;
+    font-size: 1em;
+    display: block;
+}
 
+.recipe-new #kreuz {
+    background-color: white;
+    color: var(--olivegreen);
+    height: 3em;
+    width: 3em;
+}
+
+.recipe-new textarea {
+    height: 10em;
+    width: 40em;
 }

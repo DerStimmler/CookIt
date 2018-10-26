@@ -110,10 +110,24 @@ function showSearch(content, ingredients, word, pagecount) {
     hint.setAttribute("id", "hint");
     hint.innerHTML = "Suchen...";
     content.appendChild(hint);
+    /**
+    * URL für HTTP Request. 
+    * Vorne cors-anywhere als Proxy für cors Anfragen:
+    * https://cors-anywhere.herokuapp.com/
+    * 
+    * Danach URL zur Recipepuppy API:
+    * The api is accessible at http://www.recipepuppy.com/api/
+    * Optional Parameters:
+    * i : comma delimited ingredients
+    * q : normal search query
+    * p : page
+    * format=xml : if you want xml instead of json 
+    * 
+    */
     let apiURL =
-      "https://cors-anywhere.herokuapp.com/http://recipepuppy.com/api/?i=" +
+      "https://cors-anywhere.herokuapp.com/http://recipepuppy.com/api/?i=" + 
       ingredients +
-      "&g=" +
+      "&q=" +
       word +
       "&p=" +
       pagecount;
@@ -218,15 +232,22 @@ else{
     star.setAttribute("class", "star");
     let iHeart = document.createElement("i");
     iHeart.setAttribute("class","fa fa-2x fa-heart-o not-liked");
-    iHeart.addEventListener("click", doLikeButton);
     iHeart.addEventListener("click", () =>{
-      let id = event.target.parentNode.parentNode.getAttribute("id");
+      let id = event.target.parentNode.parentNode.getAttribute("id"); //ID des Rezepts, welches im DIV Rezeptkasten als id Attribut steht holen
       let newRecipe = allResults[id];
-      newRecipe.fav = true;
-      newRecipe.date = new Date();
-      recipes.saveNew(newRecipe);
-      console.log("Rezept " + id + " wurde gespeichert!")
+      if (event.target.classList.contains("not-liked")){ //Speichern wenn Klick und Herz nicht ausgefüllt
+        newRecipe.fav = true;
+        newRecipe.date = new Date();
+        recipes.saveNew(newRecipe);
+        console.log("Rezept Nr. " + id + " wurde gespeichert! ID: " + newRecipe.id);
+      }
+      if (event.target.classList.contains("liked")){  //Löschen wenn Klick und Herz ausgefüllt
+        recipes.delete(newRecipe.id);
+        console.log("Rezept Nr. " + id + " wurde gelöscht! ID: " + newRecipe.id);
+      }
+      
     });
+    iHeart.addEventListener("click", doLikeButton);
     star.appendChild(iHeart);
     rezeptkasten.appendChild(star);
 
