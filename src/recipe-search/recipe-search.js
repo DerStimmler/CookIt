@@ -6,8 +6,8 @@ import db from "/database.js";
 /**
  * View mit der Rezeptsuche
  */
+var activeItems = []; //Array in dem alle aktuell ausgewählten Bilder/Zutaten gespeichert sind 
 
-var activeItems = [];
 class RecipeSearch {
   /**
    * Konstruktor.
@@ -270,6 +270,9 @@ class RecipeSearch {
       }
       if (value_searchIngredients === "" && value_activeItems === "") {
         value_searchIngredients = " ";
+      }
+      if (value_searchIngredients != "" && value_activeItems != ""){  //wenn in beidem Werte sind, Komma anhängen
+        value_activeItems = value_activeItems + ",";
       }
       href =
         "/search/results/" +

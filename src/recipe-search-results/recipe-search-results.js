@@ -3,6 +3,7 @@
 import stylesheet from "./recipe-search-results.css";
 import "../fav_heart.scss";
 import db from "/database.js";
+import imageURL from "../img/placeholderIMG.png";
 
 /**
  * View mit der Rezeptsuche
@@ -124,13 +125,18 @@ function showSearch(content, ingredients, word, pagecount) {
     * format=xml : if you want xml instead of json 
     * 
     */
-    let apiURL =
-      "https://cors-anywhere.herokuapp.com/http://recipepuppy.com/api/?i=" + 
-      ingredients +
-      "&q=" +
-      word +
-      "&p=" +
-      pagecount;
+   console.log("ingredients: ",ingredients);
+   console.log("word: ", word);
+    //let apiURL = "https://cors-anywhere.herokuapp.com/http://recipepuppy.com/api/?"; //mit öffentlicher API
+    let apiURL = "http://localhost:8080/http://recipepuppy.com/api/?";  //mit lokalem Proxy: hierfür in Kommandozeile "CookIt\node_modules\cors-anywhere>node server.js" ausführen um Proxy zu starten
+    if (ingredients != " "){ //Wenn keine Zutaten vorhanden i Parameter weg lassen
+      apiURL = apiURL + "i=" + ingredients;
+    }
+    if (word != " "){ //Wenn kein Suchwort vorhanden q Parameter weg lassen
+      apiURL = apiURL + "&q=" + word;
+    }
+      apiURL = apiURL + "&p=" + pagecount; //P Parameter immer benutzen
+      console.log("Request URL: ",apiURL);
     getRecipes(apiURL, content);
   }
 
@@ -212,7 +218,12 @@ else{
     let image = document.createElement("div");
     image.setAttribute("class", "image");
     let img = document.createElement("img");
+    if(results[i].thumbnail === ""){
+      img.src = imageURL;
+    }
+    else{
     img.src = results[i].thumbnail;
+    }
     image.appendChild(img);
     rezeptkasten.appendChild(image);
 
