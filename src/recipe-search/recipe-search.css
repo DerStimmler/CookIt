@@ -2,23 +2,30 @@
 .recipe-search main {
   padding-top: 2em;
   padding-bottom: 2em;
-  padding-left: 3em;
+}
+
+.recipe-search .description {
+  margin-top: 2em;
+  margin-left: 20%;
+  display: block;
+  color: black;
 }
 
 .recipe-search input {
-  margin: auto;
+  margin-left: 20%;
+  margin-bottom: 3em;
   display: block;
   width: 60%;
   -webkit-appearance: textfield;
   border-radius: 10px;
-  border: solid 1px #CCCCCC;
+  border: solid 1px #cccccc;
   padding: 10px;
 }
 
 .recipe-search .button {
   border-radius: 5px;
   background-color: var(--olivegreen);
-  display:block;
+  display: block;
   margin: auto;
   width: 20%;
   color: white;
@@ -26,4 +33,59 @@
   text-decoration: none;
   text-align: center;
   padding: 10px;
+}
+
+.recipe-search .item {
+  background-repeat: no-repeat;
+  background-size: 96px 96px;
+  width: 96px;
+  height: 96px;
+  margin: 1em;
+  padding: 0;
+  display: inline-block;
+}
+.recipe-search #tomato {
+  background-image: url(/img/tomato.png);
+}
+
+.recipe-search #mushrooms {
+  background-image: url(/img/mushrooms.png);
+}
+
+.recipe-search #pepper {
+  background-image: url(/img/pepper.png);
+}
+
+.recipe-search #onion {
+  background-image: url(/img/onion.png);
+}
+
+.recipe-search #garlic {
+  background-image: url(/img/garlic.png);
+}
+
+.recipe-search #carrot {
+  background-image: url(/img/carrot.png);
+}
+
+.recipe-search #corn {
+  background-image: url(/img/corn.png);
+}
+
+.recipe-search #salad {
+  background-image: url(/img/salad.png);
+}
+
+.recipe-search #brokkoli {
+  background-image: url(/img/brokkoli.png);
+}
+
+.recipe-search #potato {
+  background-image: url(/img/potato.png);
+}
+
+.recipe-search .grey {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  opacity: 0.5;
 }

@@ -29,18 +29,181 @@ class RecipeSearch {
     content.setAttribute("id", "main-div");
     content.classList.remove("results");
 
+    //Beschreibung Begriff-Suchfeld
+    let beschreibung = document.createElement("div");
+    beschreibung.classList.add("description");
+    beschreibung.innerHTML = "Bitte einen Suchbegriff auf Englisch eingeben:"
+    content.appendChild(beschreibung);
     //Begriff-Suchfeld
     let input = document.createElement("INPUT");
     input.setAttribute("id", "searchQuery");
-    input.setAttribute("placeholder", "Suchbegriff eingeben...");
+    input.setAttribute("placeholder", "pasta / pancake / omelet / salad ...");
     content.appendChild(input);
 
+
+    //Tomate
+    let tomato = document.createElement("div");
+    tomato.setAttribute("id","tomato");
+    tomato.classList.add("item");
+    tomato.classList.add("grey");
+    tomato.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(tomato);
+
+    //Pilze
+    let mushrooms = document.createElement("div");
+    mushrooms.setAttribute("id","mushrooms");
+    mushrooms.classList.add("item");
+    mushrooms.classList.add("grey");
+    mushrooms.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(mushrooms);
+
+    //Paprika
+    let pepper = document.createElement("div");
+    pepper.setAttribute("id","pepper");
+    pepper.classList.add("item");
+    pepper.classList.add("grey");
+    pepper.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(pepper);
+
+    //Zwiebel
+    let onion = document.createElement("div");
+    onion.setAttribute("id","onion");
+    onion.classList.add("item");
+    onion.classList.add("grey");
+    onion.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(onion);
+
+    //Knoblauch
+    let garlic = document.createElement("div");
+    garlic.setAttribute("id","garlic");
+    garlic.classList.add("item");
+    garlic.classList.add("grey");
+    garlic.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(garlic);
+
+    //Karotte
+    let carrot = document.createElement("div");
+    carrot.setAttribute("id","carrot");
+    carrot.classList.add("item");
+    carrot.classList.add("grey");
+    carrot.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(carrot);
+
+    //Mais
+    let corn = document.createElement("div");
+    corn.setAttribute("id","corn");
+    corn.classList.add("item");
+    corn.classList.add("grey");
+    corn.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(corn);
+
+    //Salat
+    let salad = document.createElement("div");
+    salad.setAttribute("id","salad");
+    salad.classList.add("item");
+    salad.classList.add("grey");
+    salad.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(salad);
+
+    //Brokkoli
+    let brokkoli = document.createElement("div");
+    brokkoli.setAttribute("id","brokkoli");
+    brokkoli.classList.add("item");
+    brokkoli.classList.add("grey");
+    brokkoli.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(brokkoli);
+
+    //Kartoffel
+    let potato = document.createElement("div");
+    potato.setAttribute("id","potato");
+    potato.classList.add("item");
+    potato.classList.add("grey");
+    potato.addEventListener("click", () =>{
+      if(event.target.classList.contains("grey")){
+        event.target.classList.remove("grey");
+      }
+      else{
+        event.target.classList.add("grey");
+      }
+    });
+    content.appendChild(potato);
+
+
+    //Beschreibung Zutaten-Suchfeld
+    let beschreibung2 = document.createElement("div");
+    beschreibung2.classList.add("description");
+    beschreibung2.innerHTML = "Bitte weitere Zutaten auf Englisch mit Komma getrennt eingeben:"
+    content.appendChild(beschreibung2);
     //weitere Zutaten-Suchfeld
     let input2 = document.createElement("INPUT");
     input2.setAttribute("id", "searchIngredients");
-    input2.setAttribute("placeholder", "weitere Zutaten eingeben...");
+    input2.setAttribute("placeholder", "noodles, chili, rice ...");
     content.appendChild(input2);
 
+    
     //Suchen Button
     let searchButton = document.createElement("BUTTON");
     searchButton.setAttribute("id", "searchButton");
