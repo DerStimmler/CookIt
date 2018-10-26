@@ -11,6 +11,7 @@ const db = new Dexie("CookIt");
  *     title: "Name des Rezepts",
  *     href: "Link zum Rezept",
  *     ingredients: "Zutaten als String",
+ *     description: "Beschreibung des Rezepts bei Internen",
  *     thumbnail: "Link zum Vorschaubild",
  *     fav: "Boolean ob das Rezept favorisiert ist",
  *     extern: "Boolean ob das Rezept selbst erstellt ist oder von extern",
@@ -19,7 +20,7 @@ const db = new Dexie("CookIt");
  */
 
 db.version(1).stores({
-  recipes: "id, title, href, ingredients, thumbnail, fav, extern, date"
+  recipes: "id, title, href, ingredients, description, thumbnail, fav, extern, date"
 });
 
 class Recipes {

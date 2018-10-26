@@ -6,6 +6,8 @@ import db from "/database.js";
 /**
  * View mit der Rezeptsuche
  */
+
+var activeItems = [];
 class RecipeSearch {
   /**
    * Konstruktor.
@@ -29,10 +31,12 @@ class RecipeSearch {
     content.setAttribute("id", "main-div");
     content.classList.remove("results");
 
+    activeItems = [];
+
     //Beschreibung Begriff-Suchfeld
     let beschreibung = document.createElement("div");
     beschreibung.classList.add("description");
-    beschreibung.innerHTML = "Bitte einen Suchbegriff auf Englisch eingeben:"
+    beschreibung.innerHTML = "Bitte einen Suchbegriff auf Englisch eingeben:";
     content.appendChild(beschreibung);
     //Begriff-Suchfeld
     let input = document.createElement("INPUT");
@@ -40,162 +44,208 @@ class RecipeSearch {
     input.setAttribute("placeholder", "pasta / pancake / omelet / salad ...");
     content.appendChild(input);
 
+    let itemView = document.createElement("div");
+    itemView.setAttribute("id","itemView");
 
     //Tomate
     let tomato = document.createElement("div");
-    tomato.setAttribute("id","tomato");
+    tomato.setAttribute("id", "tomato");
     tomato.classList.add("item");
     tomato.classList.add("grey");
-    tomato.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    tomato.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("tomato");
+      } else {
         event.target.classList.add("grey");
+        this.delete("tomato");
       }
     });
-    content.appendChild(tomato);
+    itemView.appendChild(tomato);
 
     //Pilze
     let mushrooms = document.createElement("div");
-    mushrooms.setAttribute("id","mushrooms");
+    mushrooms.setAttribute("id", "mushrooms");
     mushrooms.classList.add("item");
     mushrooms.classList.add("grey");
-    mushrooms.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    mushrooms.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
+        activeItems.push("mushrooms");
         event.target.classList.remove("grey");
-      }
-      else{
+      } else {
         event.target.classList.add("grey");
+        this.delete("mushrooms");
       }
     });
-    content.appendChild(mushrooms);
+    itemView.appendChild(mushrooms);
 
     //Paprika
     let pepper = document.createElement("div");
-    pepper.setAttribute("id","pepper");
+    pepper.setAttribute("id", "pepper");
     pepper.classList.add("item");
     pepper.classList.add("grey");
-    pepper.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    pepper.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("pepper");
+      } else {
         event.target.classList.add("grey");
+        this.delete("pepper");
       }
     });
-    content.appendChild(pepper);
+    itemView.appendChild(pepper);
 
     //Zwiebel
     let onion = document.createElement("div");
-    onion.setAttribute("id","onion");
+    onion.setAttribute("id", "onion");
     onion.classList.add("item");
     onion.classList.add("grey");
-    onion.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    onion.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("onion");
+      } else {
         event.target.classList.add("grey");
+        this.delete("onion");
       }
     });
-    content.appendChild(onion);
+    itemView.appendChild(onion);
 
     //Knoblauch
     let garlic = document.createElement("div");
-    garlic.setAttribute("id","garlic");
+    garlic.setAttribute("id", "garlic");
     garlic.classList.add("item");
     garlic.classList.add("grey");
-    garlic.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    garlic.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("garlic");
+      } else {
         event.target.classList.add("grey");
+        this.delete("garlic");
       }
     });
-    content.appendChild(garlic);
+    itemView.appendChild(garlic);
 
     //Karotte
     let carrot = document.createElement("div");
-    carrot.setAttribute("id","carrot");
+    carrot.setAttribute("id", "carrot");
     carrot.classList.add("item");
     carrot.classList.add("grey");
-    carrot.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    carrot.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("carrot");
+      } else {
         event.target.classList.add("grey");
+        this.delete("carrot");
       }
     });
-    content.appendChild(carrot);
+    itemView.appendChild(carrot);
 
     //Mais
     let corn = document.createElement("div");
-    corn.setAttribute("id","corn");
+    corn.setAttribute("id", "corn");
     corn.classList.add("item");
     corn.classList.add("grey");
-    corn.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    corn.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("corn");
+      } else {
         event.target.classList.add("grey");
+        this.delete("corn");
       }
     });
-    content.appendChild(corn);
+    itemView.appendChild(corn);
 
     //Salat
     let salad = document.createElement("div");
-    salad.setAttribute("id","salad");
+    salad.setAttribute("id", "salad");
     salad.classList.add("item");
     salad.classList.add("grey");
-    salad.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    salad.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("salad");
+      } else {
         event.target.classList.add("grey");
+        this.delete("salad");
       }
     });
-    content.appendChild(salad);
+    itemView.appendChild(salad);
 
     //Brokkoli
     let brokkoli = document.createElement("div");
-    brokkoli.setAttribute("id","brokkoli");
+    brokkoli.setAttribute("id", "brokkoli");
     brokkoli.classList.add("item");
     brokkoli.classList.add("grey");
-    brokkoli.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    brokkoli.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("brokkoli");
+      } else {
         event.target.classList.add("grey");
+        this.delete("brokkoli");
       }
     });
-    content.appendChild(brokkoli);
+    itemView.appendChild(brokkoli);
 
     //Kartoffel
     let potato = document.createElement("div");
-    potato.setAttribute("id","potato");
+    potato.setAttribute("id", "potato");
     potato.classList.add("item");
     potato.classList.add("grey");
-    potato.addEventListener("click", () =>{
-      if(event.target.classList.contains("grey")){
+    potato.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
-      }
-      else{
+        activeItems.push("potato");
+      } else {
         event.target.classList.add("grey");
+        this.delete("potato");
       }
     });
-    content.appendChild(potato);
+    itemView.appendChild(potato);
 
+    //Aubergine
+    let aubergine = document.createElement("div");
+    aubergine.setAttribute("id", "aubergine");
+    aubergine.classList.add("item");
+    aubergine.classList.add("grey");
+    aubergine.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
+        event.target.classList.remove("grey");
+        activeItems.push("aubergine");
+      } else {
+        event.target.classList.add("grey");
+        this.delete("aubergine");
+      }
+    });
+    itemView.appendChild(aubergine);
+
+    //Lauch
+    let leek = document.createElement("div");
+    leek.setAttribute("id", "leek");
+    leek.classList.add("item");
+    leek.classList.add("grey");
+    leek.addEventListener("click", () => {
+      if (event.target.classList.contains("grey")) {
+        event.target.classList.remove("grey");
+        activeItems.push("leek");
+      } else {
+        event.target.classList.add("grey");
+        this.delete("leek");
+      }
+    });
+    itemView.appendChild(leek);
+
+    content.appendChild(itemView);
 
     //Beschreibung Zutaten-Suchfeld
     let beschreibung2 = document.createElement("div");
     beschreibung2.classList.add("description");
-    beschreibung2.innerHTML = "Bitte weitere Zutaten auf Englisch mit Komma getrennt eingeben:"
+    beschreibung2.innerHTML =
+      "Bitte weitere Zutaten auf Englisch mit Komma getrennt eingeben:";
     content.appendChild(beschreibung2);
     //weitere Zutaten-Suchfeld
     let input2 = document.createElement("INPUT");
@@ -203,7 +253,6 @@ class RecipeSearch {
     input2.setAttribute("placeholder", "noodles, chili, rice ...");
     content.appendChild(input2);
 
-    
     //Suchen Button
     let searchButton = document.createElement("BUTTON");
     searchButton.setAttribute("id", "searchButton");
@@ -211,18 +260,22 @@ class RecipeSearch {
     searchButton.setAttribute("class", "button");
     searchButton.addEventListener("click", () => {
       let value_searchQuery = document.getElementById("searchQuery").value;
-      let value_searchIngredients = document.getElementById("searchIngredients").value;
+      let value_searchIngredients = document.getElementById("searchIngredients")
+        .value;
+      let value_activeItems = activeItems.toString();
+      console.log(value_activeItems);
       let href;
-      if(value_searchQuery === ""){
+      if (value_searchQuery === "") {
         value_searchQuery = " ";
       }
-      if (value_searchIngredients === ""){
+      if (value_searchIngredients === "" && value_activeItems === "") {
         value_searchIngredients = " ";
       }
       href =
         "/search/results/" +
         value_searchQuery +
         "/" +
+        value_activeItems +
         value_searchIngredients +
         "/";
       this._app.navigate(href);
@@ -236,6 +289,11 @@ class RecipeSearch {
       className: "recipe-search",
       main: content
     };
+  }
+
+  delete(item){
+    activeItems.splice( activeItems.indexOf(item), 1 );
+    console.log(item + " gelöscht! activeItems: ", activeItems);
   }
 
   /**
@@ -257,55 +315,6 @@ class RecipeSearch {
   get title() {
     return "Suche";
   }
-}
-
-function showResults(searchQuery, searchIngredients) {
-  //Objekt erzeugen um DB samt Funktionen zu benutzen
-  var recipes = new db.Recipes();
-
-  let content = document.getElementById("main-div");
-  content.classList.add("results");
-  content.innerHTML = "";
-
-  //Neue Suche Button
-  let link = document.createElement("a");
-  link.setAttribute("href", "/search/");
-  link.setAttribute("data-navigo", "");
-  let newSearchButton = document.createElement("BUTTON");
-  newSearchButton.setAttribute("id", "newSearchButton");
-  newSearchButton.setAttribute("type", "button");
-  let text = document.createTextNode("Neue Suche");
-  newSearchButton.appendChild(text);
-  link.appendChild(newSearchButton);
-  content.appendChild(link);
-}
-
-//Ruft anhand der URL von RecipePuppy entsprechende Rezepte ab, verarbeitet Sie und liefert sie in einem Array zurück
-function getRecipes(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.send();
-
-  xhr.onreadystatechange = processRequest;
-
-  function processRequest(e) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var response = JSON.parse(xhr.responseText);
-      var results = response.results;
-    }
-  }
-  //Verarbeiten der Ergebnisse von Recipepuppy
-  for (let i = 0; i < results.length; i++) {
-    results[i].id =
-      Date.now() +
-      Math.random()
-        .toString()
-        .slice(2); //Erstellen einer einzigartigen ID
-    results[i].fav = false; //Rezept ist nach dem Abrufen nicht favorisiert
-    results[i].extern = true; //Rezept ist von Extern (RecipePuppy)
-    results[i].date = null; //Noch kein Favorisierungsdatum vorhanden
-  }
-  return results;
 }
 
 export default RecipeSearch;

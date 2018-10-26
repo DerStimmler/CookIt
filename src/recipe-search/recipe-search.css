@@ -35,6 +35,11 @@
   padding: 10px;
 }
 
+.recipe-search #itemView {
+  margin-left: 2.5em;
+  margin-right: 2.5em;
+}
+
 .recipe-search .item {
   background-repeat: no-repeat;
   background-size: 96px 96px;
@@ -43,6 +48,7 @@
   margin: 1em;
   padding: 0;
   display: inline-block;
+
 }
 .recipe-search #tomato {
   background-image: url(/img/tomato.png);
@@ -82,6 +88,14 @@
 
 .recipe-search #potato {
   background-image: url(/img/potato.png);
+}
+
+.recipe-search #aubergine {
+  background-image: url(/img/aubergine.png);
+}
+
+.recipe-search #leek {
+  background-image: url(/img/leek.png);
 }
 
 .recipe-search .grey {
