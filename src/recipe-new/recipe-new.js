@@ -135,10 +135,11 @@ class RecipeNew {
         let favorited = true;
         let createdExternally = false;
         let collectedIngredients = collectIngredients();
-        let createdAt = Date.now();
+        let createdAt = new Date();
+        let createdDescription = window.document.getElementById('beschreibung').value;
 
         let recipeID = generateID();
-        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description: createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
 
         let databaseConnection =  new db.Recipes();
         databaseConnection.saveNew(recipe);
