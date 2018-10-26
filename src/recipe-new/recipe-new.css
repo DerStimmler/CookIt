@@ -11,20 +11,31 @@
   color: var(--olivegreen);
 }
 
-.recipe-new button {
-    background-color: var(--olivegreen);
-    color: white;
-    text-align: center;
-    border: solid 1px #CCCCCC;
-}
-
 .recipe-new input, textarea {
     width: 20em;
     height: 2em;
     border: solid 1px #CCCCCC;
     border-radius: 3px;
     font-size: 1em;
-    display: block;
+    display: flex;
+    font-family: "Lucida Fax", serif;
+}
+
+.recipe-new textarea {
+    height: 10em;
+    width: 45em;
+}
+
+.recipe-new #nebendiv {
+    display: flex;
+    flex-flow: row wrap;
+}
+.recipe-new button {
+    background-color: var(--olivegreen);
+    color: white;
+    text-align: center;
+    border: solid 1px #CCCCCC;
+    margin-right: 1em;
 }
 
 .recipe-new #kreuz {
@@ -32,9 +43,4 @@
     color: var(--olivegreen);
     height: 3em;
     width: 3em;
-}
-
-.recipe-new textarea {
-    height: 10em;
-    width: 40em;
 }

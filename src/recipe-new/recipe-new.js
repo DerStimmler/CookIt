@@ -46,17 +46,21 @@ class RecipeNew {
     }
     */
 
+/*Neben-Div erstellen und einbinden */
+    let nebendiv = document.createElement("div");
+    nebendiv.id = 'nebendiv';
+    content.appendChild(nebendiv);
+
 /*Zutaten-Überschrift und -Felder erstellen*/
    let ueberschriftzutat = document.createElement("p");
    ueberschriftzutat.innerHTML= "<p>Zutaten: </p>";
-
    content.appendChild(ueberschriftzutat);
 
 /* Hinzufügen-Button erstellen und einblenden*/
    let addButton = document.createElement("button");
    addButton.innerHTML = "<p>+</p>";
    addButton.id = 'kreuz';
-   content.appendChild(addButton);
+   nebendiv.appendChild(addButton);
 
 /*Neue Zutat hinzufügen*/
    addButton.addEventListener("click", function(){
@@ -64,8 +68,8 @@ class RecipeNew {
         }
    );
 
-    let beschreibung = document.createElement("p");
-   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ placeholder=Beschreibung /> </textarea> </form>";
+   let beschreibung = document.createElement("p");
+   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’/> </textarea> </form>";
    beschreibung.id = 'beschreibung';
    content.appendChild(beschreibung);
 
@@ -109,8 +113,8 @@ class RecipeNew {
      */
     function addRemoveEventListener(button){
         button.addEventListener("click",function(){
-            content.removeChild(zutatenMap.get(button.id));
-            content.removeChild(button);
+            nebendiv.removeChild(zutatenMap.get(button.id));
+            nebendiv.removeChild(button);
 
             if(zutatenMap.has(button.id))
             {
@@ -134,7 +138,7 @@ class RecipeNew {
         let createdAt = Date.now();
 
         let recipeID = generateID();
-        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients,  thumbnail:"https://images-na.ssl-images-amazon.com/images/I/51hbDoRj1dL.jpg", fav:favorited, extern: createdExternally, date:createdAt};
+        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
 
         let databaseConnection =  new db.Recipes();
         databaseConnection.saveNew(recipe);
@@ -146,8 +150,8 @@ class RecipeNew {
      * Diese Funktion erstellt eine unique ID anhand der aktuellen Zeit (TIMESTAMP) und einer "zufällig" generierten Nummer mittels Math.random().
      */
     function generateID(){
-        let uniqueID = Date.now() + Math.random().toString().slice(2).subString(0,5);
-        return parseint(uniqueID);
+        let uniqueID = Date.now() + Math.random().toString().slice(2).substring(0,5);
+        return parseInt(uniqueID);
     }
 
     /**
