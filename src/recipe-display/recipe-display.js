@@ -2,6 +2,7 @@
 
 import stylesheet from "./recipe-display.css";
 import db from "/database.js";
+import imageURL from "../img/placeholderIMG.png";
 /**
  * View zur Anzeige oder zum Bearbeiten eines Rezept.
  */
@@ -49,7 +50,11 @@ class RecipeDisplay {
     let image= document.createElement("img");
     image.setAttribute("class", "img");
     imagefeld.appendChild(image);
-    image.src=result["thumbnail"];
+    if (result["thumbnail"]===""){
+     image.src=imageURL;;
+    } else{
+    image.src=result["thumbnail"]; }
+    //image.src=result["thumbnail"];
     oberteil.appendChild(imagefeld);
 
                     // Titel bzw. Rezeptname
@@ -61,7 +66,7 @@ class RecipeDisplay {
     //content.appendChild(rezeptkasten);
 
 
-    //Löschen
+    //Löschenbutton
     let trash = document.createElement("div");
     trash.setAttribute("id", "trash");
     trash.setAttribute("class", "trashbutton");
@@ -72,22 +77,43 @@ class RecipeDisplay {
             console.log("Rezept " + id + " wurde gelöscht!")
             }
         });
+
+    // Bearbeitungsbutton
+    if (result["extern"]==false){
+    let change = document.createElement("div");
+    change.setAttribute("id", "change");
+    change.setAttribute("class", "changebutton");
+    change.addEventListener("click", () =>{
+            let id = result["id"];
+            let href ="/edit/"+id+"/";
+            this._app.navigate(href);
+
+        });
+        oberteil.appendChild(change);
+    }
         oberteil.appendChild(trash);
-
-
-
     let zutaten = document.createElement("div");
-    zutaten.innerHTML="Zutaten: "+result["ingredients"];
+    zutaten.innerHTML="<b>Zutaten: </b>"+result["ingredients"];
+    zutaten.setAttribute("class","zutaten");
     content.appendChild(zutaten);
 
     if (result["extern"]==false){
         let beschreibung = document.createElement("div");
-        //beschreibung.innerHTML="Beschreibung: "+result["description"];
-        beschreibung.innerHTML="Beschreibung:";
+        beschreibung.setAttribute("class","beschreibung");
+        //let schrift = document.createElement("div");
+        //schrift.setAttribute("id","überschrift");
+        //schrift.innerHTML="Beschreibung:</br>";
+        //content.appendChild(schrift);
+        beschreibung.innerHTML="<b>Beschreibung:</b></br>"+result["description"];
         content.appendChild(beschreibung);
     } else {
         let externlink = document.createElement("div");
-        externlink.innerHTML= result["href"];
+        externlink.setAttribute("class", "link");
+        //externlink.innerHTML= result["href"];
+        let link = document.createElement("a");
+        link.setAttribute("href", result["href"])
+        link.innerHTML="Rezeptlink";
+        externlink.appendChild(link);
         content.appendChild(externlink);
     }
 });

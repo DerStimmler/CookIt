@@ -77,13 +77,14 @@
 }
 .recipe-overview .stern{
     width: 20%;
+    height: 100%;
 }
 .recipe-overview .heart{
     font-size: 3em;
     width: 100%;
     height: 100%;
     text-align: center;
-    padding-top: 25%;
+    padding-top: 33%;
 }
 .recipe-overview .imgfeld{
     width: 20%;

@@ -36,6 +36,7 @@ class RecipeEdit {
         titel.innerHTML = "<h2>Rezept erstellen</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
         content.appendChild(titel);
 
+<<<<<<< HEAD
     /*Neben-Div erstellen und einbinden */
         let nebendiv = document.createElement("div");
         nebendiv.id = 'nebendiv';
@@ -46,6 +47,15 @@ class RecipeEdit {
             topbar: section.querySelectorAll("header > *"),
             main: content
         };
+=======
+      //document.getElementById('').innerHTML = neu;
+
+      return {
+        className: "recipe-edit",
+        //topbar: section.querySelectorAll("header > *"),
+        main: content
+      };
+>>>>>>> dedce50bc4f14cdc6b6c25cb7cafb1c918a079a7
     }
 
   /**

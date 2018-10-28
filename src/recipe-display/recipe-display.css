@@ -1,13 +1,14 @@
 .recipe-display .oberteil{
- display: flex;
+    padding-top: 2em;
+    display: flex;
 }
 
 .recipe-display .titel{
     width: 60%;
-    padding-top: 0.8em;
+    padding-top: 2.5em;
     padding-left: 0.5em;
     padding-bottom: 0.8em;
-    font-size: 1.5em;
+    font-size: 2em;
     color: var(--olivegreen);
 }
 .recipe-display .trashbutton{
@@ -18,8 +19,43 @@
     background-repeat: no-repeat;
     background-size: 50px 50px;
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 2em;
     text-align: right;
     right: 0;
     padding-right: 0.2em;
+}
+
+.recipe-display .changebutton{
+    height: 50px;
+    width:50px;
+    margin-top: 1.5em;
+    background: url(/img/bearbeiten.png);
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    margin-left: auto;
+    margin-right:0em;
+    text-align: right;
+    right: 0;
+    padding-right: 0.2em;
+}
+.recipe-display .img{
+    width: 100%;
+    height: 100%;
+}
+.recipe-display .imgfeld{
+    width:20%;
+    height:100%;
+}
+.recipe-display .zutaten{
+    padding-top: 1em;
+    font-size: 1.25em;
+}
+.recipe-display .link{
+    font-size: 3em;
+    padding-top: 1.5em;
+    padding-left: 7em;
+}
+.recipe-display .beschreibung{
+    padding-top: 1em;
+    font-size: 1.25em;
 }
