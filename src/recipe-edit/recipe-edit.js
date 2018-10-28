@@ -42,6 +42,7 @@ class RecipeEdit {
         nebendiv.id = 'nebendiv';
         content.appendChild(nebendiv);
 
+
         return {
             className: "recipe-edit",
             topbar: section.querySelectorAll("header > *"),
