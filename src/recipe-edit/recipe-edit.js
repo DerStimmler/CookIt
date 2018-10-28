@@ -33,11 +33,11 @@ class RecipeEdit {
       content.innerHTML = neu;
 
 
-      document.getElementById('').innerHTML = neu;
+      //document.getElementById('').innerHTML = neu;
 
       return {
         className: "recipe-edit",
-        topbar: section.querySelectorAll("header > *"),
+        //topbar: section.querySelectorAll("header > *"),
         main: content
       };
     }

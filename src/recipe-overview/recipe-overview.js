@@ -3,11 +3,12 @@
 import stylesheet from "./recipe-overview.css";
 import "../fav_heart.scss";
 import db from "/database.js";
+import imageURL from "../img/placeholderIMG.png";
 /**
  * View mit der Übersicht der vorhandenen Songs.
  */
- var gdatesort="sortbutton transparent";
- var gtitlesort="sortbutton";
+ var gdatesort="sortbutton";
+ var gtitlesort="sortbutton transparent";
 class RecipeOverview {
   /**
    * Konstruktor.
@@ -88,7 +89,7 @@ grundbauladen(content, this._app);
         //content.appendChild(titelsort);
         content.appendChild(topbutton);
     }
-        var ergebnisse= recipes.getAllRecipesByTitle().then((result)=>{
+        var ergebnisse= recipes.getAllRecipesByDate().then((result)=>{
         inhaltladen(result, this._app);
     });
     //Funktio um den Inhalt komplett zu laden und darzustellen
@@ -112,9 +113,11 @@ grundbauladen(content, this._app);
                 let image= document.createElement("img");
                 image.setAttribute("class", "img");
                 imagefeld.appendChild(image);
-                image.src=result[i].thumbnail;
+                if (result[i].thumbnail===""){
+                 image.src=imageURL;;
+                } else{
+                image.src=result[i].thumbnail; }
                 rezeptkasten.appendChild(imagefeld);
-
                 // Titel bzw. Rezeptname
                 let titel= document.createElement("div");
                 titel.setAttribute("class", "titel");
