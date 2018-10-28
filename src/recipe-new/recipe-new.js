@@ -12,8 +12,9 @@ class RecipeNew {
    *
    * @param {Objekt} app  Zentrales App-Objekt der Anwendung
    */
-  constructor(app) {
+  constructor(app, id) {
     this._app = app;
+    this._id = id;
   }
 
   /**
@@ -46,15 +47,15 @@ class RecipeNew {
     }
     */
 
-/*Neben-Div erstellen und einbinden */
-    let nebendiv = document.createElement("div");
-    nebendiv.id = 'nebendiv';
-    content.appendChild(nebendiv);
-
 /*Zutaten-Überschrift und -Felder erstellen*/
    let ueberschriftzutat = document.createElement("p");
    ueberschriftzutat.innerHTML= "<p>Zutaten: </p>";
    content.appendChild(ueberschriftzutat);
+
+   /*Neben-Div erstellen und einbinden */
+    let nebendiv = document.createElement("div");
+    nebendiv.id = 'nebendiv';
+    content.appendChild(nebendiv);
 
 /* Hinzufügen-Button erstellen und einblenden*/
    let addButton = document.createElement("button");
@@ -68,8 +69,10 @@ class RecipeNew {
         }
    );
 
+ /*Beschreibung erstellen und hinzufügen*/
+
    let beschreibung = document.createElement("p");
-   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’/> </textarea> </form>";
+   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
    beschreibung.id = 'beschreibung';
    content.appendChild(beschreibung);
 
@@ -95,7 +98,7 @@ class RecipeNew {
 
         let removeButton = document.createElement("button");
         removeButton.innerHTML = "<p>x</p>";
-        removeButton.id= ingredientName;
+        removeButton.id= ingredientName;;
 
         zutatenMap.set(ingredientName,newIngredient);
 
@@ -136,10 +139,9 @@ class RecipeNew {
         let createdExternally = false;
         let collectedIngredients = collectIngredients();
         let createdAt = new Date();
-        let createdDescription = window.document.getElementById('beschreibung').value;
-
+        let createdDescription = window.document.getElementById('recipeDescription').value;
         let recipeID = generateID();
-        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description: createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
 
         let databaseConnection =  new db.Recipes();
         databaseConnection.saveNew(recipe);
