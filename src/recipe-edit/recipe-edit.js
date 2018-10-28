@@ -26,13 +26,29 @@ class RecipeEdit {
    * @return {Object} Darzustellende DOM-Elemente gemäß Beschreibung der
    * Methode App._switchVisibleContent()
    */
-  onShow() {
-      var content = document.createElement("div");
-      let neu = "<h2>Rezept bearbeiten</h2> <form onsubmit =‘validateForm(event)’ action = ‘contact-form.php’ method = ‘POST’ > <!-- Name --> <label for=‘firstname’> Titel: <span class=‘required’>*</span> </label> <div class=‘side-by-side’> <input name=‘name’ type=‘text’ placeholder=‘Titel’ /> </div> <!-- Zutaten --> <ul> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘tomato’> Tomate </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘onions’> Zwiebel </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘red pepper’> Roter Pfeffer </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘garlic’> Knoblauch </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘olive oil’> Olivenöl </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘zucchini’> Zucchini </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘cream cheese’> Frischkäse </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘vermicelli’> Fadennudeln </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘eggs’> Eier </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘parmesan cheese’> Parmesankäse </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘milk’> Milch </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘italian seasoning’> Italienisches Gewürz </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘salt’> Salz </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘black pepper’> Schwarzer Pfeffer </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘butter’> Butter </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘bacon’> Bacon </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘roasted red peppers’> Geröstete rote Tomaten </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘oregano’> Oregano </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘broccoli’> Brokkoli </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘lowfat milk’> Fettarme Milch </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘basil’> Basilikum </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘caraway seed’> Kümmel </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘coriander’> Koriander </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘eggplant’> Aubergine </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘lemon’> Zitrone </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘chicken broth’> Hühnerbrühe </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘cottage cheese’> Hüttenkäse </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘egg substitute’> Ei-Ersatz </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘bread’> Brot </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘mozzarella cheese’> Mozzarella </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘leaves’> Blätter </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘parsley’> Petersilie </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘thyme’> Thymian </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘peas’> Erbsen </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘potato’> Kartoffel </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘water’> Wasser </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘mushroom’> Pilze </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘chili powder’> Chilipulver </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘flour’> Mehl </label> </li> <li> <label> <input type=‘checkbox’ name=‘ingredients’ value=‘salad greens’> Salat </label> </li> </ul> <!-- Das Rezept --> <label for=‘recipe’> Beschreibung: <span class=‘required’>*</span> </label> <textarea name=‘message’></textarea> <!-- Button zum Abschicken des Formulars --> <input type=‘submit’ value=‘Abschicken’ /> </form> <div id=‘result’></div>";
+   onShow() {
+       let zutatenMap = new Map();
 
-      content.innerHTML = neu;
+       let content = document.createElement("div");
+
+    /*Titel-Eingabe erstellen und einblenden*/
+        let titel = document.createElement("p");
+        titel.innerHTML = "<h2>Rezept erstellen</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
+        content.appendChild(titel);
+
+<<<<<<< HEAD
+    /*Neben-Div erstellen und einbinden */
+        let nebendiv = document.createElement("div");
+        nebendiv.id = 'nebendiv';
+        content.appendChild(nebendiv);
 
 
+        return {
+            className: "recipe-edit",
+            topbar: section.querySelectorAll("header > *"),
+            main: content
+        };
+=======
       //document.getElementById('').innerHTML = neu;
 
       return {
@@ -40,6 +56,7 @@ class RecipeEdit {
         //topbar: section.querySelectorAll("header > *"),
         main: content
       };
+>>>>>>> dedce50bc4f14cdc6b6c25cb7cafb1c918a079a7
     }
 
   /**
