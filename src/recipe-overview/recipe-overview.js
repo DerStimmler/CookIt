@@ -146,7 +146,7 @@ class RecipeOverview {
                   doLikeButton(event);
                   let id = event.target.parentNode.parentNode.getAttribute("id");
                   recipes.delete(parseInt(id));
-                  window.open("/");
+                  window.open("/","_self");
                                     console.log("Rezept " + id + " wurde gelöscht!");
                 }
                 });
