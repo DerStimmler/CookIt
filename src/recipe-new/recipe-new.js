@@ -173,7 +173,7 @@ class RecipeNew {
             }
             else
             {
-                ingredients = ingredients + ';' + ingredient;
+                ingredients = ingredients + ', ' + ingredient;
             }
 
         }, zutatenMap);
