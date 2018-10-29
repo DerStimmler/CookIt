@@ -1,6 +1,7 @@
 "use strict";
 
 import stylesheet from "./recipe-edit.css";
+import db from "/database.js";
 
 /**
  * View zur Anzeige oder zum Bearbeiten eines Songs.
@@ -26,29 +27,118 @@ class RecipeEdit {
    * @return {Object} Darzustellende DOM-Elemente gemäß Beschreibung der
    * Methode App._switchVisibleContent()
    */
-   onShow() {
-       let zutatenMap = new Map();
+  onShow() {
+      /* Verbindung zu Datenbank erstellen*/
+        let databaseConnection =  new db.Recipes();
 
-       let content = document.createElement("div");
+      /** Die Map der hinzugefügten Zutaten Textfelder */
+        let zutatenMap = new Map();
 
-    /*Titel-Eingabe erstellen und einblenden*/
+  /* Haupt-Div erstellen*/
+        let content = document.createElement("div");
+
+  /*Titel-Eingabe erstellen und einblenden*/
         let titel = document.createElement("p");
-        titel.innerHTML = "<h2>Rezept erstellen</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
+        titel.innerHTML = "<h2>Rezept bearbeiten</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
         content.appendChild(titel);
 
-//<<<<<<< HEAD
-    /*Neben-Div erstellen und einbinden */
+      /*Zutaten-Überschrift und -Felder erstellen*/
+        let ueberschriftzutat = document.createElement("p");
+        ueberschriftzutat.innerHTML= "<p>Zutaten: </p>";
+        content.appendChild(ueberschriftzutat);
+
+        /*Neben-Div erstellen und einbinden */
         let nebendiv = document.createElement("div");
         nebendiv.id = 'nebendiv';
         content.appendChild(nebendiv);
 
+    /* Hinzufügen-Button erstellen und einblenden*/
+        let addButton = document.createElement("button");
+        addButton.innerHTML = "<p>+</p>";
+        addButton.id = 'kreuz';
+        nebendiv.appendChild(addButton);
 
-        return {
-            className: "recipe-edit",
-            //topbar: section.querySelectorAll("header > *"),
-            main: content
-        };
-//=======
+    /*Neue Zutat hinzufügen*/
+        addButton.addEventListener("click", function(){
+            addZutat();
+        }
+        );
+
+    /*Beschreibung erstellen und hinzufügen*/
+       let beschreibung = document.createElement("p");
+       beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
+       beschreibung.id = 'beschreibung';
+       content.appendChild(beschreibung);
+
+        let saveButton = document.createElement("button");
+        saveButton.innerHTML = "<p>Überarbeitung speichern</p>";
+        content.appendChild(saveButton);
+
+        /**
+         * Diese Funktion wird ein neues Textfeld mit einem dazugehörigen entfernen Button hinzufügen.
+         * Des Weiteren wird das hinzugefügte TextFeld mit der eindeutigen ID der zutatenMap hinzugefügt.
+         * Anschließend wird ein EventListener auf den neuen Button erstellt.
+         */
+        function addZutat(){
+            let newIngredient = document.createElement("p");
+
+            let ingredientName = 'ingredient' + zutatenMap.size.toString();
+
+            newIngredient.innerHTML = "<form><label for=‘zutaten’> </label> <div class=‘side-by-side’> <input id='" + ingredientName + "' name='textbox'' type=‘text’/></div></form>";
+
+            let removeButton = document.createElement("button");
+            removeButton.innerHTML = "<p>x</p>";
+            removeButton.id= ingredientName;;
+
+            zutatenMap.set(ingredientName,newIngredient);
+
+            addRemoveEventListener(removeButton);
+
+            /*Neue Zutat nach der anderen Zutat hinzufügen*/
+            addButton.parentNode.insertBefore(newIngredient, addButton.nextSibling);
+            newIngredient.parentNode.insertBefore(removeButton, newIngredient.nextSibling);
+        }
+
+        /**
+         * Diese Funktion sammelt alle eingegebenen Daten und bereitet diese zum speichern vor.
+         * Das Erstelldatum ist ein TIMESTAMP der aktuellen Uhrzeit ( Timestamp = Anzahl der Sekunden seit 1.1.1970 UTC )
+         * Das Thumbnail ist ein statischer Link zu einem Nutella Bild.
+         * Zuletzt werden die aufbereiteten Daten in der Datenbank mit saveNew gespeichert.
+         */
+        function updateRecipe(){
+            let recipeName = window.document.getElementById('recipeTitle').value;
+            let favorited = true;
+            let createdExternally = false;
+            let collectedIngredients = collectIngredients();
+        /*    let createdAt = new Date();*/
+            let createdDescription = window.document.getElementById('recipeDescription').value;
+            let recipeID = id;
+            let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+
+            databaseConnection.update(recipe);
+
+            window.alert("Das Rezept wurde erfolgreich erstellt!");
+        }
+
+
+        /**
+         * Diese Funktion erstellt den "onClick" EventListener für den reingereichten Button (button).
+         * Wenn das Event ausgelöst wird, wird die Zutat aus der zutatenMap wieder entfernt.
+         * Das zu dem Button gehörende Textfeld sowie der Button selbst, werden wieder aus dem HTML DOM entfernt.
+         */
+        function addRemoveEventListener(button){
+            button.addEventListener("click",function(){
+                nebendiv.removeChild(zutatenMap.get(button.id));
+                nebendiv.removeChild(button);
+
+                if(zutatenMap.has(button.id))
+                {
+                    zutatenMap.remove(button.id);
+                }
+                 }
+             );
+        }
+
       //document.getElementById('').innerHTML = neu;
 
       return {
@@ -56,7 +146,6 @@ class RecipeEdit {
         //topbar: section.querySelectorAll("header > *"),
         main: content
       };
-//>>>>>>> dedce50bc4f14cdc6b6c25cb7cafb1c918a079a7
     }
 
   /**
