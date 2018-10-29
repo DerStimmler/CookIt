@@ -45,3 +45,7 @@
     height: 3em;
     width: 3em;
 }
+
+.recipe-edit button:hover {
+    cursor: pointer;
+}

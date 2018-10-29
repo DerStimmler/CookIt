@@ -13,14 +13,12 @@
 }
 .recipe-display .trashbutton{
     cursor: pointer;
-    background-size: 25px 25px;
     height: 25px;
     width:25px;
     margin-top: 1.5em;
     background-image: url(/img/abfall.png);
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
     background-size: 25px 25px;
-    margin-left: auto;
     margin-right: 2em;
     text-align: right;
     right: 0;
@@ -35,8 +33,7 @@
     background-image: url(/img/bearbeiten.png);
     background-repeat: no-repeat;
     background-size: 25px 25px;
-    margin-left: auto;
-    margin-right:0em;
+    margin-right:1em;
     text-align: right;
     right: 0;
     padding-right: 0.2em;
@@ -81,6 +78,7 @@
   text-decoration: none;
   text-align: center;
   padding: 10px;
+  box-shadow: 3px 4px 8px grey;
   padding-top: 0.5%;
 }
 
@@ -111,4 +109,41 @@
   .recipe-display .beschreibung{
       font-size: 1.25em;
   }
+}
+@media screen and (max-width: 400px) {
+.recipe-display .trashbutton{
+    background-size: 16px 16px;
+    width: 16px;
+    height:16px;
+}
+.recipe-display .changebutton{
+    background-size: 16px 16px;
+    width: 16px;
+    height:16px;
+}
+.recipe-display .img {
+  width: 75px;
+  height: 75px;
+}
+.recipe-display .titel{
+    width: 50%;
+    font-size: 1em;
+}
+.recipe-display .zutaten{
+    font-size: 0.75em;
+}
+.recipe-display .beschreibung{
+    font-size: 0.75em;
+}
+}
+@media print {
+    .recipe-display .trashbutton{
+    display: none;
+    }
+    .recipe-display .changebutton{
+    display: none;
+    }
+    .recipe-display .button {
+    display: none;
+    }
 }

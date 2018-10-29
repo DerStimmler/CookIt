@@ -136,3 +136,14 @@ padding ist innere Abstand vom rand bsp div */
       font-size: 5em;
   }
 }
+@media print {
+    .recipe-overview #sortbutton {
+    display:none;
+    }
+    .recipe-overview #alphabutton{
+    display:none;
+    }
+    .recipe-overview .button{
+    display:none;
+    }
+}
