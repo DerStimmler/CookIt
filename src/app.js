@@ -19,45 +19,6 @@ class App {
    * Konstruktor.
    */
   constructor() {
-
-          // ANDRES DATENBANKEN TEST********************************************************************************************
-          console.log("Hier ist ein TEST");
-           let test = async () => {
-           let recipes = new db.Recipes();
-                          //await recipes.clear(); ZUM CLEANEN HIIIIIIIIER GÖNNEN***********************************************
-           let alle = await recipes.getAllRecipesByTitle();
-           console.log("Alle Rezepte", alle);
-           if (true) {
-               //console.log("Bisher noch keine Songs vorhanden, lege deshalb Testdaten an");
-               await Promise.all([
-                   /*recipes.saveNew({
-                       id: "01",
-                       title: "Ginger Champagne",
-                       href: "http:\/\/allrecipes.com\/Recipe\/Ginger-Champagne\/Detail.aspx",
-                       ingredients: "champagne, ginger, ice, vodka",
-                       thumbnail: "http:\/\/img.recipepuppy.com\/1.jpg",
-                       fav: "true",
-                       extern: "true",
-                       date: "21.10.18"
-                   }),
-                   recipes.saveNew({
-                       id: "02",
-                       title: "Potato and Cheese Frittata",
-                       href: "http:\/\/allrecipes.com\/Recipe\/Potato-and-Cheese-Frittata\/Detail.aspx",
-                       ingredients: "cheddar cheese, eggs, olive oil, onions, potato, salt",
-                       thumbnail: "http:\/\/img.recipepuppy.com\/2.jpg",
-                       fav: "true",
-                       extern: "true",
-                       date: "21.10.18"
-                   }),*/
-               ]);
-           }
-           let allerezepte = await recipes.getAllRecipesByTitle();
-           console.log("Gespeicherte:", allerezepte);
-       }
-
-       test();
-      // ENDE DES TESTS***************************************************************************************************
     this._title = "CookIt!";
     this._currentView = null;
     // Single Page Router aufsetzen

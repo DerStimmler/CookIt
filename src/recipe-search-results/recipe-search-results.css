@@ -70,7 +70,7 @@
   padding-top: 0.8em;
   padding-left: 0.5em;
   padding-bottom: 0.8em;
-  font-size: 1.5em;
+  font-size: 1em;
   color: var(--olivegreen);
 }
 
@@ -126,11 +126,21 @@
 }
 
 .recipe-search-results .star i {
-  font-size: 5em;
+  font-size: 2.5em;
   width: 100%;
   height: 100%;
   text-align: center;
   padding-top: 25%;
+}
+
+@media screen and (min-width: 900px) {
+  .recipe-search-results .star i {
+    font-size: 5em;
+  }
+
+  .recipe-search-results .item .title {
+    font-size: 1.5em;
+  }
 }
 
 @media print {
