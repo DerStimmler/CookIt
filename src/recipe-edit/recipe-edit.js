@@ -34,57 +34,77 @@ class RecipeEdit {
       /** Die Map der hinzugefügten Zutaten Textfelder */
         let zutatenMap = new Map();
 
-  /* Haupt-Div erstellen*/
+    /* Rezept aus der Datenbank holen */
+        let rezept = databaseConnection.getById(parseInt(this._id));
+
+    /* Haupt-Div erstellen*/
         let content = document.createElement("div");
 
-  /*Titel-Eingabe erstellen und einblenden*/
-        let titel = document.createElement("p");
-        titel.innerHTML = "<h2>Rezept bearbeiten</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
-        content.appendChild(titel);
 
-      /*Zutaten-Überschrift und -Felder erstellen*/
-        let ueberschriftzutat = document.createElement("p");
-        ueberschriftzutat.innerHTML= "<p>Zutaten: </p>";
-        content.appendChild(ueberschriftzutat);
+        /* Daten ins Formular laden */
+        rezept.then((result)=>{
+            console.log(result);
 
-        /*Neben-Div erstellen und einbinden */
-        let nebendiv = document.createElement("div");
-        nebendiv.id = 'nebendiv';
-        content.appendChild(nebendiv);
+            /*Titel-Eingabe erstellen und einblenden*/
+            let titel = document.createElement("p");
+            titel.innerHTML = "<h2>Rezept bearbeiten</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input value="+result['title']+" id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
+            content.appendChild(titel);
 
-    /* Hinzufügen-Button erstellen und einblenden*/
-        let addButton = document.createElement("button");
-        addButton.innerHTML = "<p>+</p>";
-        addButton.id = 'kreuz';
-        nebendiv.appendChild(addButton);
+            /*Zutaten-Überschrift erstellen*/
+            let ueberschriftzutat = document.createElement("p");
+            ueberschriftzutat.innerHTML= "<p>Zutaten: </p>";
+            content.appendChild(ueberschriftzutat);
 
-    /*Neue Zutat hinzufügen*/
-        addButton.addEventListener("click", function(){
-            addZutat();
-        }
-        );
+            /*Neben-Div erstellen und einbinden */
+            let nebendiv = document.createElement("div");
+            nebendiv.id = 'nebendiv';
+            content.appendChild(nebendiv);
 
-    /*Beschreibung erstellen und hinzufügen*/
-       let beschreibung = document.createElement("p");
-       beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
-       beschreibung.id = 'beschreibung';
-       content.appendChild(beschreibung);
+            /* Hinzufügen-Button erstellen und einblenden*/
+            let addButton = document.createElement("button");
+            addButton.innerHTML = "<p>+</p>";
+            addButton.id = 'kreuz';
+            nebendiv.appendChild(addButton);
 
-        let saveButton = document.createElement("button");
-        saveButton.innerHTML = "<p>Überarbeitung speichern</p>";
-        content.appendChild(saveButton);
+            /*Zutaten-Feld erstellen und hinzufügen*/
+            let test = document.createElement("p");
+            test.innerHTML = "<form><label for=‘ingredients’></label> <div class=‘side-by-side’>  <input id='ingredients' name='textbox' value="+result['ingredients']+" type=‘text’/></div></form>";
+            test.id = 'beschreibung';
+            nebendiv.appendChild(test);
 
-        /**
-         * Diese Funktion wird ein neues Textfeld mit einem dazugehörigen entfernen Button hinzufügen.
-         * Des Weiteren wird das hinzugefügte TextFeld mit der eindeutigen ID der zutatenMap hinzugefügt.
-         * Anschließend wird ein EventListener auf den neuen Button erstellt.
-         */
-        function addZutat(){
+            /*Beschreibung erstellen und hinzufügen*/
+            let beschreibung = document.createElement("p");
+            beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <input value="+result['description']+" name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
+            beschreibung.id = 'beschreibung';
+            content.appendChild(beschreibung);
+
+            /* Button zum Speichern*/
+            let saveButton = document.createElement("button");
+            saveButton.innerHTML = "<p>Überarbeitung speichern</p>";
+            content.appendChild(saveButton);
+
+            saveButton.addEventListener("click",function(){
+                updateRecipe();
+            });
+
+            /*Neue Zutat hinzufügen*/
+            addButton.addEventListener("click", function(){
+                addZutat();
+                }
+                );
+
+
+            /**
+            * Diese Funktion wird ein neues Textfeld mit einem dazugehörigen entfernen Button hinzufügen.
+            * Des Weiteren wird das hinzugefügte TextFeld mit der eindeutigen ID der zutatenMap hinzugefügt.
+            * Anschließend wird ein EventListener auf den neuen Button erstellt.
+            */
+            function addZutat(){
             let newIngredient = document.createElement("p");
 
             let ingredientName = 'ingredient' + zutatenMap.size.toString();
 
-            newIngredient.innerHTML = "<form><label for=‘zutaten’> </label> <div class=‘side-by-side’> <input id='" + ingredientName + "' name='textbox'' type=‘text’/></div></form>";
+            newIngredient.innerHTML = "<form><label for=‘zutaten’> </label> <div class=‘side-by-side’> <input id='" + ingredientName + "' name='textbox' 'type=‘text’/></div></form>";
 
             let removeButton = document.createElement("button");
             removeButton.innerHTML = "<p>x</p>";
@@ -97,29 +117,59 @@ class RecipeEdit {
             /*Neue Zutat nach der anderen Zutat hinzufügen*/
             addButton.parentNode.insertBefore(newIngredient, addButton.nextSibling);
             newIngredient.parentNode.insertBefore(removeButton, newIngredient.nextSibling);
-        }
+            }
+
+            /**
+             * Diese Funktion sammelt alle eingegebenen Daten und bereitet diese zum speichern vor.
+             * Das Erstelldatum ist ein TIMESTAMP der aktuellen Uhrzeit ( Timestamp = Anzahl der Sekunden seit 1.1.1970 UTC )
+             * Das Thumbnail ist ein statischer Link zu einem Nutella Bild.
+             * Zuletzt werden die aufbereiteten Daten in der Datenbank mit saveNew gespeichert.
+             */
+            function updateRecipe(){
+                let recipeName = window.document.getElementById('recipeTitle').value;
+                let favorited = true;
+                let createdExternally = false;
+                let collectedIngredients = collectIngredients();
+                let createdAt = result["date"];
+                let createdDescription = window.document.getElementById('recipeDescription').value;
+                let recipeID = result["id"];
+                let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+
+                databaseConnection.update(recipe);
+
+                window.alert("Das Rezept wurde erfolgreich überarbeitet!");
+            }
+
+        });
+
+
+
 
         /**
-         * Diese Funktion sammelt alle eingegebenen Daten und bereitet diese zum speichern vor.
-         * Das Erstelldatum ist ein TIMESTAMP der aktuellen Uhrzeit ( Timestamp = Anzahl der Sekunden seit 1.1.1970 UTC )
-         * Das Thumbnail ist ein statischer Link zu einem Nutella Bild.
-         * Zuletzt werden die aufbereiteten Daten in der Datenbank mit saveNew gespeichert.
+         * Diese Funktion Sammelt mittels der zutatenMap alle Zutaten und erstellt einen String,
+         *  welcher als Trennzeichen der Zutaten ein Semikolon verwendet.
          */
-        function updateRecipe(){
-            let recipeName = window.document.getElementById('recipeTitle').value;
-            let favorited = true;
-            let createdExternally = false;
-            let collectedIngredients = collectIngredients();
-        /*    let createdAt = new Date();*/
-            let createdDescription = window.document.getElementById('recipeDescription').value;
-            let recipeID = id;
-            let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+        function collectIngredients(){
+            let ingredients = "";
 
-            databaseConnection.update(recipe);
+            zutatenMap.forEach(function(value, key) {
+                let ingredient = window.document.getElementById(key).value;
 
-            window.alert("Das Rezept wurde erfolgreich erstellt!");
+                if(ingredients.length === 0)
+                {
+                    ingredients = ingredient;
+                }
+                else
+                {
+                    ingredients = ingredients + ';' + ingredient;
+                }
+
+            }, zutatenMap);
+
+            ingredients = ingredients + '; ' + window.document.getElementById('ingredients').value;
+
+            return ingredients;
         }
-
 
         /**
          * Diese Funktion erstellt den "onClick" EventListener für den reingereichten Button (button).
