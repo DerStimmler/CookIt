@@ -74,6 +74,7 @@ class RecipeDisplay {
         if (confirm("Soll das Rezept wirklich gelöscht werden?")==true){
             let id = result["id"];
             recipes.delete(parseInt(id));
+            this._app.navigate("/");
             console.log("Rezept " + id + " wurde gelöscht!")
             }
         });
@@ -107,14 +108,26 @@ class RecipeDisplay {
         beschreibung.innerHTML="<b>Beschreibung:</b></br>"+result["description"];
         content.appendChild(beschreibung);
     } else {
-        let externlink = document.createElement("div");
+        /*let externlink = document.createElement("button");
+        externlink.setAttribute("type","button");
         externlink.setAttribute("class", "link");
         //externlink.innerHTML= result["href"];
         let link = document.createElement("a");
         link.setAttribute("href", result["href"])
         link.innerHTML="Rezeptlink";
-        externlink.appendChild(link);
-        content.appendChild(externlink);
+        externlink.appendChild(link);*/
+
+        let extern = document.createElement("button");
+        extern.innerHTML="Zum Rezept &#8680";
+        extern.setAttribute("id", "button");
+        extern.setAttribute("type", "button");
+        extern.setAttribute("class", "button");
+        extern.addEventListener("click", () => {
+          let href =result["href"];
+          window.open(href);
+        });
+        content.appendChild(extern);
+        //content.appendChild(externlink);
     }
 });
     //});

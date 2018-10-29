@@ -112,18 +112,18 @@ function showSearch(content, ingredients, word, pagecount) {
     hint.innerHTML = "Suchen...";
     content.appendChild(hint);
     /**
-    * URL für HTTP Request. 
+    * URL für HTTP Request.
     * Vorne cors-anywhere als Proxy für cors Anfragen:
     * https://cors-anywhere.herokuapp.com/
-    * 
+    *
     * Danach URL zur Recipepuppy API:
     * The api is accessible at http://www.recipepuppy.com/api/
     * Optional Parameters:
     * i : comma delimited ingredients
     * q : normal search query
     * p : page
-    * format=xml : if you want xml instead of json 
-    * 
+    * format=xml : if you want xml instead of json
+    *
     */
    console.log("ingredients: ",ingredients);
    console.log("word: ", word);
@@ -244,7 +244,7 @@ else{
     star.setAttribute("class", "star");
     let iHeart = document.createElement("i");
     iHeart.setAttribute("class","fa fa-2x fa-heart-o not-liked");
-    iHeart.addEventListener("click", () =>{
+    iHeart.addEventListener("click", (event) =>{
       let id = event.target.parentNode.parentNode.getAttribute("id"); //ID des Rezepts, welches im DIV Rezeptkasten als id Attribut steht holen
       let newRecipe = allResults[id];
       if (event.target.classList.contains("not-liked")){ //Speichern wenn Klick und Herz nicht ausgefüllt
@@ -257,7 +257,7 @@ else{
         recipes.delete(newRecipe.id);
         console.log("Rezept Nr. " + id + " wurde gelöscht! ID: " + newRecipe.id);
       }
-      
+
     });
     iHeart.addEventListener("click", doLikeButton);
     star.appendChild(iHeart);
