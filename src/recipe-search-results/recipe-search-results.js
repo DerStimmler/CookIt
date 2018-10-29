@@ -168,7 +168,7 @@ function getRecipes(url, content) {
       console.log("2. weiter vearbeitet:", results);
       printResults(results, content);
     }
-    else if (xhr.status == 503){
+    else if (xhr.readyState == 4 && xhr.status == 503){
       let errorText = document.createElement("div");
       errorText.setAttribute("id","error503");
       errorText.innerHTML = "Keine Verbindung zur API möglich!";
@@ -275,7 +275,7 @@ else{
 }
 }
 
-//Button Zeug
+//Button (Herz) Funktionen
 function doLikeButton(e) {
   toggleButton(e.target);
 }
