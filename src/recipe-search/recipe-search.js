@@ -52,7 +52,7 @@ class RecipeSearch {
     tomato.setAttribute("id", "tomato");
     tomato.classList.add("item");
     tomato.classList.add("grey");
-    tomato.addEventListener("click", () => {
+    tomato.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("tomato");
@@ -68,7 +68,7 @@ class RecipeSearch {
     mushrooms.setAttribute("id", "mushrooms");
     mushrooms.classList.add("item");
     mushrooms.classList.add("grey");
-    mushrooms.addEventListener("click", () => {
+    mushrooms.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         activeItems.push("mushrooms");
         event.target.classList.remove("grey");
@@ -84,7 +84,7 @@ class RecipeSearch {
     pepper.setAttribute("id", "pepper");
     pepper.classList.add("item");
     pepper.classList.add("grey");
-    pepper.addEventListener("click", () => {
+    pepper.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("pepper");
@@ -100,7 +100,7 @@ class RecipeSearch {
     onion.setAttribute("id", "onion");
     onion.classList.add("item");
     onion.classList.add("grey");
-    onion.addEventListener("click", () => {
+    onion.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("onion");
@@ -116,7 +116,7 @@ class RecipeSearch {
     garlic.setAttribute("id", "garlic");
     garlic.classList.add("item");
     garlic.classList.add("grey");
-    garlic.addEventListener("click", () => {
+    garlic.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("garlic");
@@ -132,7 +132,7 @@ class RecipeSearch {
     carrot.setAttribute("id", "carrot");
     carrot.classList.add("item");
     carrot.classList.add("grey");
-    carrot.addEventListener("click", () => {
+    carrot.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("carrot");
@@ -148,7 +148,7 @@ class RecipeSearch {
     corn.setAttribute("id", "corn");
     corn.classList.add("item");
     corn.classList.add("grey");
-    corn.addEventListener("click", () => {
+    corn.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("corn");
@@ -164,7 +164,7 @@ class RecipeSearch {
     salad.setAttribute("id", "salad");
     salad.classList.add("item");
     salad.classList.add("grey");
-    salad.addEventListener("click", () => {
+    salad.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("salad");
@@ -180,7 +180,7 @@ class RecipeSearch {
     brokkoli.setAttribute("id", "brokkoli");
     brokkoli.classList.add("item");
     brokkoli.classList.add("grey");
-    brokkoli.addEventListener("click", () => {
+    brokkoli.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("brokkoli");
@@ -196,7 +196,7 @@ class RecipeSearch {
     potato.setAttribute("id", "potato");
     potato.classList.add("item");
     potato.classList.add("grey");
-    potato.addEventListener("click", () => {
+    potato.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("potato");
@@ -212,7 +212,7 @@ class RecipeSearch {
     aubergine.setAttribute("id", "aubergine");
     aubergine.classList.add("item");
     aubergine.classList.add("grey");
-    aubergine.addEventListener("click", () => {
+    aubergine.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("aubergine");
@@ -228,7 +228,7 @@ class RecipeSearch {
     leek.setAttribute("id", "leek");
     leek.classList.add("item");
     leek.classList.add("grey");
-    leek.addEventListener("click", () => {
+    leek.addEventListener("click", (event) => {
       if (event.target.classList.contains("grey")) {
         event.target.classList.remove("grey");
         activeItems.push("leek");

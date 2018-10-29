@@ -1,100 +1,106 @@
 /**Hier nur die .recipe-overview Klasse benutzen!*/
 
 .recipe-overview main {
-    display:block;
-    margin:auto;
+  display: block;
+  margin: auto;
 }
-.recipe-overview .allebuttons{
- display: flex;
+.recipe-overview .allebuttons {
+  display: flex;
 }
 .recipe-overview .kasten {
-    background-color: #cccccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: auto;
-    margin-bottom: 1em;
-    display: flex;
-    width: 70%;
+  background-color: #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  width: 70%;
 }
 .recipe-overview .button {
-    margin-right: auto;
-    margin-left: 15%;
-    margin-top: 1.5em;
-    margin-bottom: 1em;
-    text-align: left;
-    padding-left: 0.2em;
+  margin-right: auto;
+  margin-left: 15%;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  text-align: left;
+  padding-left: 0.2em;
   border-radius: 5px;
   background-color: var(--olivegreen);
   display: block;
   width: 70%;
-  height:50px;
+  height: 50px;
   color: white;
   border-color: white;
   font-weight: bold;
   text-decoration: none;
   text-align: center;
   padding: 10px;
+  box-shadow: 3px 4px 8px grey;
 }
+
+.recipe-overview .button:focus {
+  outline: none;
+}
+
 .recipe-overview .sortbutton {
-    display: block;
+  display: block;
   margin-left: auto;
   margin-right: 0;
 }
-.recipe-overview .transparent{
-    opacity: 0.2;
+.recipe-overview .transparent {
+  opacity: 0.2;
 }
-#sortbutton{
-    height: 50px;
-    width:50px;
-    margin-top: 1.5em;
-    background: url(/img/datesort.png);
-    background-repeat: no-repeat;
-    margin-left: auto;
-    margin-right: 0;
-    text-align: right;
-    right: 0;
-    padding-right: 0.2em;
+#sortbutton {
+  height: 50px;
+  width: 50px;
+  margin-top: 1.5em;
+  background: url(/img/datesort.png);
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+  right: 0;
+  padding-right: 0.2em;
 }
-#alphabutton{
-        height: 50px;
-        width:50px;
-        margin-top: 1.5em;
-        background: url(/img/sort.png);
-        background-repeat: no-repeat;
-        margin-left: auto;
-        margin-right: 0;
-        text-align: right;
-        right: 0;
-        padding-right: 0.2em;
+#alphabutton {
+  height: 50px;
+  width: 50px;
+  margin-top: 1.5em;
+  background: url(/img/sort.png);
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+  right: 0;
+  padding-right: 0.2em;
 }
-.recipe-overview .titel{
-    width: 60%;
-    padding-top: 0.8em;
-    padding-left: 0.5em;
-    padding-bottom: 0.8em;
-    font-size: 1.5em;
-    color: var(--olivegreen);
+.recipe-overview .titel {
+  width: 60%;
+  padding-top: 0.8em;
+  padding-left: 0.5em;
+  padding-bottom: 0.8em;
+  font-size: 1.5em;
+  color: var(--olivegreen);
 }
-.recipe-overview .stern{
-    width: 20%;
-    height: 100%;
+.recipe-overview .stern {
+  width: 20%;
+  height: 100%;
 }
-.recipe-overview .heart{
-    font-size: 3em;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding-top: 33%;
+.recipe-overview .heart {
+  font-size: 5em;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 33%;
 }
-.recipe-overview .imgfeld{
-    width: 20%;
-    height: 100%;
+.recipe-overview .imgfeld {
+  width: 20%;
+  height: 100%;
 }
-.recipe-overview .img{
-    height: 100%;
-    width: 100%;
+.recipe-overview .img {
+  height: 100%;
+  width: 100%;
 }
-.recipe-overview .a{
-    text-decoration: none;
-    color: var(--olivegreen);
+.recipe-overview .a {
+  text-decoration: none;
+  color: var(--olivegreen);
 }

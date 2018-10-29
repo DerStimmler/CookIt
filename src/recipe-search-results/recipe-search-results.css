@@ -5,14 +5,21 @@
   background-color: var(--olivegreen);
   display: block;
   margin: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  width: 20%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  width: 70%;
+  font-size: larger;
   color: white;
   border-color: white;
   text-decoration: none;
   text-align: center;
   padding: 10px;
+  box-shadow: 3px 4px 8px grey;
+  cursor: pointer;
+}
+
+.recipe-search-results .button:focus {
+  outline: none;
 }
 
 .recipe-search-results .hidden {
@@ -75,6 +82,7 @@
 .recipe-search-results .item a {
   text-decoration: none;
   color: var(--olivegreen);
+  cursor: pointer;
 }
 
 .recipe-search-results .item img {
@@ -118,9 +126,85 @@
 }
 
 .recipe-search-results .star i {
-  font-size: 3em;
+  font-size: 5em;
   width: 100%;
   height: 100%;
   text-align: center;
   padding-top: 25%;
+}
+
+@media print {
+  .recipe-search-results .button {
+    display: none;
+  }
+  
+  .recipe-search-results .hidden {
+    display: none;
+  }
+
+  .recipe-search-results #hint {
+    text-align: center;
+    margin-top: 1em;
+    animation: blinkingText 0.8s infinite;
+    padding-left:20px;
+  }
+  
+  .recipe-search-results .item {
+    background-color: #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 1em;
+    display: flex;
+    width: 70%;
+  }
+  
+  .recipe-search-results .item .image {
+    width: 20%;
+    height: 100%;
+  }
+  
+  .recipe-search-results .item .title {
+    width: 60%;
+    padding-top: 0.8em;
+    padding-left: 0.5em;
+    padding-bottom: 0.8em;
+    font-size: 1.5em;
+    color: var(--olivegreen);
+  }
+  
+  .recipe-search-results .item .star {
+    width: 20%;
+    height: 100%;
+  }
+  
+  .recipe-search-results .item a {
+    text-decoration: none;
+    color: var(--olivegreen);
+  }
+  
+  .recipe-search-results .item img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .recipe-search-results #error {
+    text-align: center;
+  }
+  
+  .recipe-search-results #arrow {
+      display: none;
+  }
+  
+  .recipe-search-results #arrowdiv {
+    display: none;
+  }
+  
+  .recipe-search-results .star i {
+    font-size: 5em;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 25%;
+  }
 }

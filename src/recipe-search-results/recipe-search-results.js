@@ -11,8 +11,8 @@ import imageURL from "../img/placeholderIMG.png";
 
  //Sammlung von allen abgerufenen Rezepten
  var allResults = [];
- //ID zum identifizieren von Rezepten
- var IDs = 0;
+ //ID zum identifizieren von Rezepten. ID von Rezepten entsprechen der Stelle im Array allResults
+ var IDs = 0; //IDs bei neuem Aufruf der Seite auf 0 setzen
 
 class RecipeSearchResults {
   /**
@@ -58,7 +58,7 @@ class RecipeSearchResults {
     newSearchButton.appendChild(text);
     content.appendChild(newSearchButton);
 
-    //weitere Ergebnisse laden
+    //weitere Ergebnisse laden Pfeil
     let arrowdiv = document.createElement("div");
     arrowdiv.setAttribute("id","arrowdiv");
     let arrow = document.createElement("i");
@@ -244,7 +244,7 @@ else{
     star.setAttribute("class", "star");
     let iHeart = document.createElement("i");
     iHeart.setAttribute("class","fa fa-2x fa-heart-o not-liked");
-    iHeart.addEventListener("click", () =>{
+    iHeart.addEventListener("click", (event) =>{
       let id = event.target.parentNode.parentNode.getAttribute("id"); //ID des Rezepts, welches im DIV Rezeptkasten als id Attribut steht holen
       let newRecipe = allResults[id];
       if (event.target.classList.contains("not-liked")){ //Speichern wenn Klick und Herz nicht ausgefüllt
@@ -265,7 +265,7 @@ else{
 
 
     content.appendChild(rezeptkasten);
-    IDs++;
+    IDs++; //Jeder Rezeptkasten bekommt eine höhere ID
   }
 
 
