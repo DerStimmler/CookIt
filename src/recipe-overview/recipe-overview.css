@@ -1,11 +1,13 @@
 /**Hier nur die .recipe-overview Klasse benutzen!*/
-
+/* wenn main a z.b. dann nimmt es nur a die direkt in main sind nicht die welche noch in einem div in der main sind */
 .recipe-overview main {
   display: block;
   margin: auto;
 }
-.recipe-overview .allebuttons {
-  display: flex;
+/*margin ist äußerer Abstand
+padding ist innere Abstand vom rand bsp div */
+.recipe-overview .allebuttons{
+ display: flex;
 }
 .recipe-overview .kasten {
   background-color: #cccccc;
@@ -17,17 +19,18 @@
   width: 70%;
 }
 .recipe-overview .button {
-  margin-right: auto;
-  margin-left: 15%;
-  margin-top: 1.5em;
-  margin-bottom: 1em;
-  text-align: left;
-  padding-left: 0.2em;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: 15%;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    text-align: left;
+    padding-left: 0.2em;
   border-radius: 5px;
   background-color: var(--olivegreen);
   display: block;
   width: 70%;
-  height: 50px;
+  height:25px;
   color: white;
   border-color: white;
   font-weight: bold;
@@ -35,6 +38,7 @@
   text-align: center;
   padding: 10px;
   box-shadow: 3px 4px 8px grey;
+  padding-top: 0.5%;
 }
 
 .recipe-overview .button:focus {
@@ -49,37 +53,40 @@
 .recipe-overview .transparent {
   opacity: 0.2;
 }
-#sortbutton {
-  height: 50px;
-  width: 50px;
-  margin-top: 1.5em;
-  background: url(/img/datesort.png);
-  background-repeat: no-repeat;
-  margin-left: auto;
-  margin-right: 0;
-  text-align: right;
-  right: 0;
-  padding-right: 0.2em;
+#sortbutton{
+    cursor: pointer;
+    background-size: 25px 25px;
+    height: 25px;
+    width:25px;
+    margin-top: 1.5em;
+    background-image: url(/img/datesort.png);
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: 0;
+    right: 0;
+
 }
-#alphabutton {
-  height: 50px;
-  width: 50px;
-  margin-top: 1.5em;
-  background: url(/img/sort.png);
-  background-repeat: no-repeat;
-  margin-left: auto;
-  margin-right: 0;
-  text-align: right;
-  right: 0;
-  padding-right: 0.2em;
+#alphabutton{
+    cursor: pointer;
+        background-size: 25px 25px;
+        height: 25px;
+        width:25px;
+        margin-top: 1.5em;
+        background-image: url(/img/sort.png);
+        background-repeat: no-repeat;
+        margin-left: auto;
+        margin-right: 0;
+        right: 0;
+
 }
-.recipe-overview .titel {
-  width: 60%;
-  padding-top: 0.8em;
-  padding-left: 0.5em;
-  padding-bottom: 0.8em;
-  font-size: 1.5em;
-  color: var(--olivegreen);
+.recipe-overview .titel{
+    cursor: pointer;
+    width: 60%;
+    padding-top: 0.8em;
+    padding-left: 0.5em;
+    padding-bottom: 0.8em;
+    font-size: 1em;
+    color: var(--olivegreen);
 }
 .recipe-overview .stern {
   width: 20%;
@@ -103,4 +110,29 @@
 .recipe-overview .a {
   text-decoration: none;
   color: var(--olivegreen);
+}
+#keinfav{
+    text-align: center;
+    margin-top: 1em;
+}
+@media screen and (min-width: 900px) {
+  .recipe-overview #sortbutton {
+          background-size: 50px 50px;
+      height: 50px;
+      width:50px;
+  }
+  .recipe-overview #alphabutton{
+          background-size: 50px 50px;
+      height: 50px;
+      width:50px;
+  }
+  .recipe-overview .button{
+      height:50px;
+  }
+  .recipe-overview .titel{
+      font-size: 1.5em;
+  }
+  .recipe-overview .heart{
+      font-size: 3em;
+  }
 }

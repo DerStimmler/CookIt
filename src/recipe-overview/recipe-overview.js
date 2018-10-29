@@ -27,11 +27,14 @@ class RecipeOverview {
    * Methode App._switchVisibleContent()
    */
   onShow() {
+              gdatesort="sortbutton";
+              gtitlesort="sortbutton transparent";
+      //Bei Nutzung von async Function mit .then arbeiten oder await damit ergebnis kein promise, da promise noch nicht fertig abgerufen ist (asynchroner ablauf)
     //Datenbank erzeugen
     var recipes = new db.Recipes();
     //Haupt-div erzeugen
     let content = document.createElement("div");
-grundbauladen(content, this._app);
+    grundbauladen(content, this._app);
     //Erstellen Grundgerüst
     function grundbauladen(content, app){
         let topbutton= document.createElement("div");
@@ -53,7 +56,7 @@ grundbauladen(content, this._app);
         let datumsort = document.createElement("div");
         datumsort.setAttribute("id", "sortbutton");
         datumsort.setAttribute("class", gdatesort);
-        datumsort.addEventListener("click", () =>{
+        datumsort.addEventListener("click", (event) =>{
             if (event.target.classList.contains("transparent")){
             event.target.classList.remove("transparent");
             gdatesort="sortbutton";
@@ -73,7 +76,7 @@ grundbauladen(content, this._app);
         titelsort.setAttribute("id", "alphabutton");
         //titelsort.setAttribute("type", "button");
         titelsort.setAttribute("class", gtitlesort);
-        titelsort.addEventListener("click", () =>{
+        titelsort.addEventListener("click", (event) =>{
             if (event.target.classList.contains("transparent")){
             event.target.classList.remove("transparent");
             gtitlesort="sortbutton";
@@ -97,6 +100,7 @@ grundbauladen(content, this._app);
         //Test, ob Datenbank LEER oder nicht. JA=Text anzeigen das es keine Favoriten gibt, NEIN=Schleife, die alle Rezepte ausgibt
         if (result.length === 0){
             let keinFav = document.createElement("div");
+            keinFav.setAttribute("id","keinfav");
             keinFav.innerHTML="Keine Rezepte vorhanden";
             content.appendChild(keinFav);
         } else {
@@ -137,12 +141,13 @@ grundbauladen(content, this._app);
                 let iHeart = document.createElement("i");
                 //iHeart.setAttribute("class", "heart");
                 iHeart.setAttribute("class","fa fa-2x liked fa-heart liked-shaked heart");
-                iHeart.addEventListener("click", () =>{
+                iHeart.addEventListener("click", (event) =>{
                     if (confirm("Soll das Rezept wirklich gelöscht werden?")==true){
                   doLikeButton(event);
                   let id = event.target.parentNode.parentNode.getAttribute("id");
                   recipes.delete(parseInt(id));
-                                    console.log("Rezept " + id + " wurde gelöscht!")
+                  window.open("/");
+                                    console.log("Rezept " + id + " wurde gelöscht!");
                 }
                 });
                 stern.appendChild(iHeart);

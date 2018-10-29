@@ -8,16 +8,18 @@
     padding-top: 2.5em;
     padding-left: 0.5em;
     padding-bottom: 0.8em;
-    font-size: 2em;
+    font-size: 1.5em;
     color: var(--olivegreen);
 }
 .recipe-display .trashbutton{
-    height: 50px;
-    width:50px;
+    cursor: pointer;
+    background-size: 25px 25px;
+    height: 25px;
+    width:25px;
     margin-top: 1.5em;
-    background: url(/img/abfall.png);
+    background-image: url(/img/abfall.png);
     background-repeat: no-repeat;
-    background-size: 50px 50px;
+    background-size: 25px 25px;
     margin-left: auto;
     margin-right: 2em;
     text-align: right;
@@ -26,12 +28,13 @@
 }
 
 .recipe-display .changebutton{
-    height: 50px;
-    width:50px;
+    cursor:pointer;
+    height: 25px;
+    width:25px;
     margin-top: 1.5em;
-    background: url(/img/bearbeiten.png);
+    background-image: url(/img/bearbeiten.png);
     background-repeat: no-repeat;
-    background-size: 50px 50px;
+    background-size: 25px 25px;
     margin-left: auto;
     margin-right:0em;
     text-align: right;
@@ -39,23 +42,73 @@
     padding-right: 0.2em;
 }
 .recipe-display .img{
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
 }
 .recipe-display .imgfeld{
-    width:20%;
+    /*width:40%;*/
     height:100%;
 }
 .recipe-display .zutaten{
     padding-top: 1em;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 .recipe-display .link{
-    font-size: 3em;
-    padding-top: 1.5em;
-    padding-left: 7em;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 .recipe-display .beschreibung{
     padding-top: 1em;
-    font-size: 1.25em;
+    font-size: 1em;
+
+}
+.recipe-display .button {
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: 15%;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    text-align: left;
+    padding-left: 0.2em;
+  border-radius: 5px;
+  background-color: var(--olivegreen);
+  display: block;
+  width: 70%;
+  height:25px;
+  color: white;
+  border-color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  padding-top: 0.5%;
+}
+
+@media screen and (min-width: 900px) {
+  .recipe-display .img {
+    width: 250px;
+    height: 250px;
+  }
+  .recipe-display .button{
+      height:50px;
+  }
+  .recipe-display .titel{
+      font-size: 2em;
+  }
+  .recipe-display .trashbutton{
+      height: 40px;
+      width:40px;
+      background-size: 40px 40px;
+  }
+  .recipe-display .changebutton{
+      height: 40px;
+      width:40px;
+      background-size: 40px 40px;
+  }
+  .recipe-display .zutaten{
+      font-size: 1.25em;
+  }
+  .recipe-display .beschreibung{
+      font-size: 1.25em;
+  }
 }
