@@ -4,26 +4,8 @@
         margin-left: 5em;
 }
 
-.recipe-edit label {
-    list-style: none;
-}
 .recipe-edit h2 {
   color: var(--olivegreen);
-}
-
-.recipe-edit input, textarea {
-    width: 20em;
-    height: 2em;
-    border: solid 1px #CCCCCC;
-    border-radius: 3px;
-    font-size: 1em;
-    display: flex;
-    font-family: "Lucida Fax", serif;
-}
-
-.recipe-edit textarea {
-    height: 10em;
-    width: 45em;
 }
 
 .recipe-edit #nebendiv {
@@ -36,16 +18,51 @@
     text-align: center;
     border: solid 1px #CCCCCC;
     margin-right: 1em;
-    font-family: "Lucida Fax", serif;
+    border-radius: 5px;
+    border-color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 3px 4px 8px grey;
+    padding-top: 0.5%;
+    line-height: 0px;
 }
 
 .recipe-edit #kreuz {
     background-color: white;
     color: var(--olivegreen);
-    height: 3em;
-    width: 3em;
+    height: 2.5em;
+    width: 2.5em;
+    border: solid 1.2px #CCCCCC;
 }
 
 .recipe-edit button:hover {
     cursor: pointer;
+}
+
+.recipe-edit #recipeDescription {
+    text-align: left;
+    height: 15em;
+    width: 42em;
+}
+
+@media screen and (max-width: 400px) {
+    .recipe-new textarea {
+        height: 10em;
+        width: 15em;
+    }
+}
+
+@media screen an (min-width: 900px) {
+}
+
+.recipe-edit input{
+    width: 19em;
+    height: 2em;
+    border: solid 1px #CCCCCC;
+    border-radius: 3px;
+    font-size: 1em;
+    display: flex;
+    font-family: "Lucida Fax", serif;
 }

@@ -24,6 +24,9 @@
 .recipe-new textarea {
     height: 10em;
     width: 45em;
+    max-width: 90em;
+    min-height: 10em;
+    min-width: 25em;
 }
 
 .recipe-new #nebendiv {
@@ -36,7 +39,15 @@
     text-align: center;
     border: solid 1px #CCCCCC;
     margin-right: 1em;
-    font-family: "Lucida Fax", serif;
+    border-radius: 5px;
+    border-color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 3px 4px 8px grey;
+    padding-top: 0.5%;
+    line-height: 0px;
 }
 
 .recipe-new #kreuz {
@@ -44,4 +55,19 @@
     color: var(--olivegreen);
     height: 3em;
     width: 3em;
+    border: solid 1.2px #CCCCCC;
+}
+
+.recipe-new button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+    .recipe-new textarea {
+        height: 10em;
+        width: 15em;
+    }
+}
+
+@media screen an (min-width: 900px) {
 }

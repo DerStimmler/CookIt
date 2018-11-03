@@ -35,7 +35,7 @@ class RecipeNew {
 
 /*Titel-Eingabe erstellen und einblenden*/
     let titel = document.createElement("p");
-    titel.innerHTML = "<h2>Rezept erstellen</h2> <form><label> Titel: </label> <div class=‘side-by-side’> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
+    titel.innerHTML = "<h2>Rezept erstellen</h2> <form><label> Titel: </label> <div> <input id='recipeTitle' name=‘recipeName’ type=‘text’/> </div> </form>";
     content.appendChild(titel);
 
 /*    var zutaten = new Object({'value':'tomato', 'title':'Tomate'}, {'value':'onions', 'title':'Zwiebel'});
@@ -72,7 +72,7 @@ class RecipeNew {
  /*Beschreibung erstellen und hinzufügen*/
 
    let beschreibung = document.createElement("p");
-   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <textarea name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
+   beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div> <textarea name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
    beschreibung.id = 'beschreibung';
    content.appendChild(beschreibung);
 
@@ -80,8 +80,10 @@ class RecipeNew {
     saveButton.innerHTML = "<p>Rezept speichern</p>";
     content.appendChild(saveButton);
 
-    saveButton.addEventListener("click",function(){
+    saveButton.addEventListener("click",()=>{
         saveRecipe();
+        let href ="/";
+        this._app.navigate(href);
     });
 
     /**
@@ -90,15 +92,13 @@ class RecipeNew {
      * Anschließend wird ein EventListener auf den neuen Button erstellt.
      */
     function addZutat(){
-        let newIngredient = document.createElement("p");
-
+        let newIngredient = document.createElement("input");
         let ingredientName = 'ingredient' + zutatenMap.size.toString();
-
-        newIngredient.innerHTML = "<form><label for=‘zutaten’> </label> <div class=‘side-by-side’> <input id='" + ingredientName + "' name='textbox'' type=‘text’/></div></form>";
-
+        newIngredient.setAttribute("id",ingredientName);
+        
         let removeButton = document.createElement("button");
         removeButton.innerHTML = "<p>x</p>";
-        removeButton.id= ingredientName;;
+        removeButton.id= ingredientName;
 
         zutatenMap.set(ingredientName,newIngredient);
 
@@ -121,7 +121,7 @@ class RecipeNew {
 
             if(zutatenMap.has(button.id))
             {
-                zutatenMap.remove(button.id);
+                zutatenMap.delete(button.id);
             }
              }
          );
@@ -141,7 +141,7 @@ class RecipeNew {
         let createdAt = new Date();
         let createdDescription = window.document.getElementById('recipeDescription').value;
         let recipeID = generateID();
-        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+        let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"", fav:favorited, extern: createdExternally, date:createdAt};
 
         let databaseConnection =  new db.Recipes();
         databaseConnection.saveNew(recipe);
@@ -165,17 +165,20 @@ class RecipeNew {
         let ingredients = "";
 
         zutatenMap.forEach(function(value, key) {
-            let ingredient = window.document.getElementById(key).value;
+            let element = window.document.getElementById(key);
+            if (element) {
+                let ingredient = element.value;
 
-            if(ingredients.length === 0)
-            {
-                ingredients = ingredient;
-            }
-            else
-            {
-                ingredients = ingredients + ', ' + ingredient;
-            }
 
+                if(ingredients.length === 0)
+                {
+                    ingredients = ingredient;
+                }
+                else
+                {
+                    ingredients = ingredients+";"+ingredient;
+                }
+            }
         }, zutatenMap);
 
         return ingredients;

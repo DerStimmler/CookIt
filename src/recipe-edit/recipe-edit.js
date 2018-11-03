@@ -67,24 +67,58 @@ class RecipeEdit {
             nebendiv.appendChild(addButton);
 
             /*Zutaten-Feld erstellen und hinzufügen*/
-            let test = document.createElement("p");
-            test.innerHTML = "<form><label for=‘ingredients’></label> <div class=‘side-by-side’>  <input id='ingredients' name='textbox' value="+result['ingredients']+" type=‘text’/></div></form>";
-            test.id = 'beschreibung';
-            nebendiv.appendChild(test);
+            let labelzutaten = document.createElement("label");
+            labelzutaten.innerHTML = "Zutaten:";
+            let currentIngredients = result["ingredients"];
+            console.log(currentIngredients);
+            let res = currentIngredients.split(";");
+            console.log(res);
+
+            for (let i=0; i<res.length; i++) {
+                let inputingredients = document.createElement("input");
+                inputingredients.value = res[i];
+
+                let removeButton = document.createElement("button");
+                removeButton.innerHTML = "<p>x</p>";
+                let ingredientName = "ingredient"+i;
+                removeButton.id= ingredientName;
+                inputingredients.id = ingredientName;
+
+                zutatenMap.set(ingredientName,inputingredients);
+                console.log(zutatenMap);
+
+                nebendiv.appendChild(inputingredients);
+                nebendiv.appendChild(removeButton);
+
+                addRemoveEventListener(removeButton);
+
+            }
 
             /*Beschreibung erstellen und hinzufügen*/
-            let beschreibung = document.createElement("p");
-            beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label> <div class=‘side-by-side’> <input value="+result['description']+" name=‘beschreibung’ type=‘text’ id='recipeDescription'/> </textarea> </form>";
-            beschreibung.id = 'beschreibung';
-            content.appendChild(beschreibung);
+            let currentDescription = result["description"];
+            let labeldescription = document.createElement("label");
+            labeldescription.innerHTML = "Beschreibung:";
+            let textareadescription = document.createElement("textarea");
+            textareadescription.value = currentDescription;
+            textareadescription.id = "recipeDescription";
+            content.appendChild(labeldescription);
+            labeldescription.appendChild(textareadescription);
+
+
+
+    /*        beschreibung.innerHTML = "<form><label for=‘beschreibung’> Beschreibung: </label><textarea value=currentDescription name=‘beschreibung’ type=‘text’ id='recipeDescription'></textarea></form>";
+            beschreibung.setAttribute("id", "beschreibung");*/
+
 
             /* Button zum Speichern*/
             let saveButton = document.createElement("button");
             saveButton.innerHTML = "<p>Überarbeitung speichern</p>";
             content.appendChild(saveButton);
 
-            saveButton.addEventListener("click",function(){
+            saveButton.addEventListener("click",()=>{
                 updateRecipe();
+                let href ="/";
+                this._app.navigate(href);
             });
 
             /*Neue Zutat hinzufügen*/
@@ -100,15 +134,13 @@ class RecipeEdit {
             * Anschließend wird ein EventListener auf den neuen Button erstellt.
             */
             function addZutat(){
-            let newIngredient = document.createElement("p");
-
+            let newIngredient = document.createElement("input");
             let ingredientName = 'ingredient' + zutatenMap.size.toString();
-
-            newIngredient.innerHTML = "<form><label for=‘zutaten’> </label> <div class=‘side-by-side’> <input id='" + ingredientName + "' name='textbox' 'type=‘text’/></div></form>";
-
+            newIngredient.setAttribute("id",ingredientName);
+            
             let removeButton = document.createElement("button");
             removeButton.innerHTML = "<p>x</p>";
-            removeButton.id= ingredientName;;
+            removeButton.id= ingredientName;
 
             zutatenMap.set(ingredientName,newIngredient);
 
@@ -133,7 +165,8 @@ class RecipeEdit {
                 let createdAt = result["date"];
                 let createdDescription = window.document.getElementById('recipeDescription').value;
                 let recipeID = result["id"];
-                let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:"http://www.mooskirchner-hof.at/images/kochloeffel.png", fav:favorited, extern: createdExternally, date:createdAt};
+                let bild = result["thumbnail"]
+                let recipe = {id: recipeID, title:recipeName, href: "TODO", ingredients: collectedIngredients, description:createdDescription,  thumbnail:bild , fav:favorited, extern: createdExternally, date:createdAt};
 
                 databaseConnection.update(recipe);
 
@@ -153,20 +186,23 @@ class RecipeEdit {
             let ingredients = "";
 
             zutatenMap.forEach(function(value, key) {
-                let ingredient = window.document.getElementById(key).value;
+                let element = window.document.getElementById(key);
 
-                if(ingredients.length === 0)
-                {
-                    ingredients = ingredient;
-                }
-                else
-                {
-                    ingredients = ingredients + ';' + ingredient;
-                }
+                if (element){
+                    let ingredient = element.value;
 
+                    if(ingredients.length === 0)
+                    {
+                        ingredients = ingredient;
+                    }
+                    else
+                    {
+                        ingredients = ingredients + ';' + ingredient;
+                    }
+                }
             }, zutatenMap);
 
-            ingredients = ingredients + '; ' + window.document.getElementById('ingredients').value;
+            ingredients = ingredients;
 
             return ingredients;
         }
@@ -183,7 +219,7 @@ class RecipeEdit {
 
                 if(zutatenMap.has(button.id))
                 {
-                    zutatenMap.remove(button.id);
+                    zutatenMap.delete(button.id);
                 }
                  }
              );
