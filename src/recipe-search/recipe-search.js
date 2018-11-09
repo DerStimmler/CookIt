@@ -1,7 +1,6 @@
 "use strict";
 
 import stylesheet from "./recipe-search.css";
-import db from "/database.js";
 
 /**
  * View mit der Rezeptsuche

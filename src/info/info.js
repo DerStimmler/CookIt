@@ -22,15 +22,12 @@ class Info {
    */
   onShow() {
     // Anzuzeigende HTML-Elemente ermitteln
-    let content = document.createElement("div");
-    let test = document.createElement("p");
-    test.innerHTML = "<h2>Info</h2><br>Hier kommt später mal der Info Text hin!<br>Wie z.B. was eingeben in den Suchfeldern";
-
-    content.appendChild(test);
+    let section = document.querySelector("#info").cloneNode(true);
+    let content = section.querySelectorAll("div > *");
 
     return {
       className: "info",
-      main: content
+      main: section
     };
   }
 
