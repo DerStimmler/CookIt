@@ -61,22 +61,54 @@
     <!-- ====================== -->
     <section id="info-section" class="hidden">
         <div id="info">
-            <ul class="accordion css-accordion">
+            <ul class="accordion">
+                <h2>Anleitung</h2>
                 <li class="accordion-item">
                   <input class="accordion-item-input" type="checkbox" name="accordion" id="item1" />
-                  <label for="item1" class="accordion-item-hd">Accordion Heading 1<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consequuntur architecto maxime, saepe repudiandae quidem quisquam aliquam cumque possimus inventore, deserunt nostrum, explicabo modi voluptatibus sed, labore quaerat. Accusamus, officiis. </div>
+                  <label for="item1" class="accordion-item-header">Rezept suchen<span class="accordion-item-header-symbol">&#9650;</span></label>
+                  <div class="accordion-item-text">
+                    <h3>Suchkriterien festlegen</h3>
+                    Auf der ersten Seite der Rezeptsuche ist es möglich im oberen Textfeld ein Suchwort bzw. Gericht einzugeben, nach dem gesucht werden soll. (Hinweis: Der Begriff sollte auf Englisch sein, da die verwendete API auch nur nach englischen Ergebnissen sucht)<br>
+                    Darunter können Zutaten per Klick selektiert und wieder abgewählt werden.<br>
+                    Im zweiten Textfeld ist es möglich neben den bereits ausgewählten Zutaten noch weitere anzugeben. (Hinweis: Hier sollten die Zutaten ebenfalls auf Englisch sein und durch ein Komma getrennt werden)<br>
+                    Per Klick auf “Suchen” werden Suchwort und Zutaten verarbeitet und man navigiert zu einer neuen Seite auf der die Ergebnisse der Suche angezeigt werden.<br>              
+                    <h3>Suchergebnisse anzeigen</h3>
+                    Nach der Suche werden die gefundenen Rezepte untereinader aufgelistet.<br>
+                    Links sieht man ein Vorschaubild des Rezepts (falls kein Bild vorhanden ist, wird ein Platzhalterbild verwendet).<br>
+                    In der Mitte befindet sich der Titel des Rezepts, der angeklickt werden kann, worauf sich ein neuer Browsertab öffnet, der das Rezept auf der externen Seite anzeigt.<br>
+                    Rechts befindet sich ein Herz, welches den Favoritenstatus anzeigt. Ist das Herz ausgefüllt und rot ist es favorisiert und wird unter "Meine Rezepte" angezeigt. Der Status kann mit einem einfachen Klick geändert werden.<br>
+                    Am Ende der Liste der Ergebnisse befindet sich ein kleiner animierter Pfeil. Nach einem Klick auf ihn werden max. 10 neue Rezepte gesucht und an die Ergebnisliste angehängt.<br>
+                </div>
+                </li>
+                <h2>weitere Informationen</h2>
+                <li class="accordion-item">
+                    <input class="accordion-item-input" type="checkbox" name="accordion" id="item2" />
+                    <label for="item2" class="accordion-item-header">zukünfige Funktionen<span class="accordion-item-header-symbol">&#9650;</span></label>
+                    <div class="accordion-item-text">
+                        <ul>
+                            <li>Login-System</li>
+                            <li>Teilen von selbsterstellten Rezepten</li>
+                            <li>Deutsche Benutzung der Rezeptsuche</li>
+                            <li>Vorschläge von empfohlenen Rezepten</li>
+                            <li>Verwendung von Service Workern</li>
+                            <li>Bewertung von Rezepten</li>
+                            <li>Bessere API für Rezeptsuche</li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="accordion-item">
-                  <input class="accordion-item-input" type="checkbox" name="accordion" id="item2" />
-                  <label for="item2" class="accordion-item-hd">Accordion Heading 2<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consequuntur architecto maxime, saepe repudiandae quidem quisquam aliquam cumque possimus inventore, deserunt nostrum, explicabo modi voluptatibus sed, labore quaerat. Accusamus, officiis. </div>
-                </li>
-                <li class="accordion-item">
-                  <input class="accordion-item-input" type="checkbox" name="accordion" id="item3" />
-                  <label for="item3" class="accordion-item-hd">Accordion Heading 3<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consequuntur architecto maxime, saepe repudiandae quidem quisquam aliquam cumque possimus inventore, deserunt nostrum, explicabo modi voluptatibus sed, labore quaerat. Accusamus, officiis. </div>
-                </li>
+                        <input class="accordion-item-input" type="checkbox" name="accordion" id="item3" />
+                        <label for="item3" class="accordion-item-header">verwendete Technologien<span class="accordion-item-header-symbol">&#9650;</span></label>
+                        <div class="accordion-item-text">
+                            <ul>
+                                <li><a href="https://dexie.org/" target="_blank">Dexie</a>: Wrapper zur Benutzung der IndexedDB-API</li>
+                                <li><a href="https://www.npmjs.com/package/navigo" target="_blank">Navigo</a>: Single-Page-Router</li>
+                                <li><a href="https://parceljs.org/" target="_blank">Parcel</a>: Web Application Bundler</li>
+                                <li><a href ="https://cors-anywhere.herokuapp.com/" target="_blank">cors-anywhere</a>: API um cross-origin Anfragen zu ermöglichen</li>
+                                <li><a href ="http://www.recipepuppy.com/about/api/" target="_blank">recipepuppy</a>: API zur Rezeptsuche</li>
+                            </ul>
+                        </div>
+                    </li>
               </ul>
             </div>
     </section>
