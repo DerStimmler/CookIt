@@ -1,7 +1,9 @@
 /**Hier nur die .info Klasse benutzen!*/
 
-.info #info {
-  padding-top: 1em;
+
+.info h2 {
+  color: var(--olivegreen);
+  font-weight: bold;
 }
 
 .info .accordion {
@@ -11,32 +13,40 @@
   list-style: none outside;
 }
 
+.info .accordion-item {
+  margin-bottom: 0.5em;
+  -moz-box-shadow: 0 0 5px #ccc;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+
 .info .accordion > * + * { border-top: 1px solid white; }
 
-.info .accordion-item-hd {
+.info .accordion-item-header {
   display: block;
-  padding: 15px 30px 15px 0;
+  padding: 1px 15px 5px 10px;
   position: relative;
   cursor: pointer;
   font-size: 1.25em;
   font-weight: bold;
 }
 
-.info .accordion-item-input:checked ~ .accordion-item-bd {
+.info .accordion-item-input:checked ~ .accordion-item-text {
   max-height: 1000px;
-  padding-top: 15px;
+  padding-top: 7px;
+  padding-left: 5%;
   margin-bottom: 15px;
   -webkit-transition: max-height 1s ease-in, margin .3s ease-in, padding .3s ease-in;
   transition: max-height 1s ease-in, margin .3s ease-in, padding .3s ease-in;
 }
 
-.info .accordion-item-input:checked ~ .accordion-item-hd > .accordion-item-hd-cta {
+.info .accordion-item-input:checked ~ .accordion-item-header > .accordion-item-header-symbol {
   -webkit-transform: rotate(0);
   -ms-transform: rotate(0);
   transform: rotate(0);
 }
 
-.info .accordion-item-hd-cta {
+.info .accordion-item-header-symbol {
   display: block;
   width: 30px;
   position: absolute;
@@ -54,10 +64,13 @@
   line-height: 1;
 }
 
-.info .accordion-item-bd {
+.info .accordion-item-text {
   max-height: 0;
+  padding-left: 5%;
+  padding-right: 10%;
   margin-bottom: 0;
   overflow: hidden;
+  text-align: left;
   -webkit-transition: max-height .15s ease-out, margin-bottom .3s ease-out, padding .3s ease-out;
   transition: max-height .15s ease-out, margin-bottom .3s ease-out, padding .3s ease-out;
 }

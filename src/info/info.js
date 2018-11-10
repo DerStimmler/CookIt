@@ -23,8 +23,7 @@ class Info {
   onShow() {
     // Anzuzeigende HTML-Elemente ermitteln
     let section = document.querySelector("#info").cloneNode(true);
-    let content = section.querySelectorAll("div > *");
-
+    
     return {
       className: "info",
       main: section
