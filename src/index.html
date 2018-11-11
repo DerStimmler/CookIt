@@ -71,7 +71,7 @@
                     Auf der ersten Seite der Rezeptsuche ist es möglich im oberen Textfeld ein Suchwort bzw. Gericht einzugeben, nach dem gesucht werden soll. (Hinweis: Der Begriff sollte auf Englisch sein, da die verwendete API auch nur nach englischen Ergebnissen sucht)<br>
                     Darunter können Zutaten per Klick selektiert und wieder abgewählt werden.<br>
                     Im zweiten Textfeld ist es möglich neben den bereits ausgewählten Zutaten noch weitere anzugeben. (Hinweis: Hier sollten die Zutaten ebenfalls auf Englisch sein und durch ein Komma getrennt werden)<br>
-                    Per Klick auf “Suchen” werden Suchwort und Zutaten verarbeitet und man navigiert zu einer neuen Seite auf der die Ergebnisse der Suche angezeigt werden.<br>              
+                    Per Klick auf “Suchen” werden Suchwort und Zutaten verarbeitet und man navigiert zu einer neuen Seite auf der die Ergebnisse der Suche angezeigt werden.<br>
                     <h3>Suchergebnisse anzeigen</h3>
                     Nach der Suche werden die gefundenen Rezepte untereinader aufgelistet.<br>
                     Links sieht man ein Vorschaubild des Rezepts (falls kein Bild vorhanden ist, wird ein Platzhalterbild verwendet).<br>
@@ -80,6 +80,16 @@
                     Am Ende der Liste der Ergebnisse befindet sich ein kleiner animierter Pfeil. Nach einem Klick auf ihn werden max. 10 neue Rezepte gesucht und an die Ergebnisliste angehängt.<br>
                 </div>
                 </li>
+                <li class="accordion-item">
+                      <input class="accordion-item-input" type="checkbox" name="accordion" id="item4" />
+                      <label for="item4" class="accordion-item-header">Meine Rezepte<span class="accordion-item-header-symbol">&#9650;</span></label>
+                      <div class="accordion-item-text">Auf der Übersichtsseite besteht die Möglichkeit über die sich rechts befindende Buttons (Kalender und A-Z Abbildung) die Sortierung der Rezepte zu ändern. (Aktiver Button=schwarz, inaktive Button=leicht transparent) <br />Möchte man ein Rezept löschen, klickt man auf das Herz. Daraufhin erscheint eine Meldung, ob das Rezept wirklich entfernt werden soll. Wird diese Meldung mit “OK” bestätigt, wird das Rezept aus der Übersicht entfernt. <br />Möchte man das Rezept mit genaueren Informationen sehen muss dafür auf den Titel geklickt werden.<br />Eigene Rezepte können durch anklicken des "Rezept hinzufügen" Button eingepflegt werden.</div>
+                    </li>
+                <li class="accordion-item">
+                      <input class="accordion-item-input" type="checkbox" name="accordion" id="item5" />
+                      <label for="item5" class="accordion-item-header">Rezept anzeigen<span class="accordion-item-header-symbol">&#9650;</span></label>
+                      <div class="accordion-item-text">Auch hier besteht die Möglichkeit das Rezept zu löschen, indem man auf den Mülleimer klickt. Nach dem Anklicken muss ebenfalls die Meldung mit “OK” bestätigt werden.<br />Eigene Rezepte können durch betätigen des Stift Buttons überarbeitet werden.<br />Rezepte die aus der API abgespeichert wurden kann man sich über den "Zum Rezept" Button genauer anschauen.</div>
+                    </li>
                 <h2>weitere Informationen</h2>
                 <li class="accordion-item">
                     <input class="accordion-item-input" type="checkbox" name="accordion" id="item2" />
@@ -97,22 +107,6 @@
                     </div>
                 </li>
                 <li class="accordion-item">
-<<<<<<< HEAD
-                  <input class="accordion-item-input" type="checkbox" name="accordion" id="item3" />
-                  <label for="item3" class="accordion-item-hd">Accordion Heading 3<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consequuntur architecto maxime, saepe repudiandae quidem quisquam aliquam cumque possimus inventore, deserunt nostrum, explicabo modi voluptatibus sed, labore quaerat. Accusamus, officiis. </div>
-                </li>
-                <li class="accordion-item">
-                  <input class="accordion-item-input" type="checkbox" name="accordion" id="item4" />
-                  <label for="item4" class="accordion-item-hd">Meine Rezepte bedienen<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Auf der Übersichtsseite besteht die Möglichkeit über die sich rechts befindende Buttons (Kalender und A-Z Abbildung) die Sortierung der Rezepte zu ändern. (Aktiver Button=schwarz, inaktive Button=leicht transparent) <br />Möchte man ein Rezept löschen, klickt man auf das Herz. Daraufhin erscheint eine Meldung, ob das Rezept wirklich entfernt werden soll. Wird diese Meldung mit “OK” bestätigt, wird das Rezept aus der Übersicht entfernt. <br />Möchte man das Rezept mit genaueren Informationen sehen muss dafür auf den Titel geklickt werden.<br />Eigene Rezepte können durch anklicken des "Rezept hinzufügen" Button eingepflegt werden.</div>
-                </li>
-                <li class="accordion-item">
-                  <input class="accordion-item-input" type="checkbox" name="accordion" id="item5" />
-                  <label for="item5" class="accordion-item-hd">Rezept anzeigen<span class="accordion-item-hd-cta">&#9650;</span></label>
-                  <div class="accordion-item-bd">Auch hier besteht die Möglichkeit das Rezept zu löschen, indem man auf den Mülleimer klickt. Nach dem Anklicken muss ebenfalls die Meldung mit “OK” bestätigt werden.<br />Eigene Rezepte können durch betätigen des Stift Buttons überarbeitet werden.<br />Rezepte die aus der API abgespeichert wurden kann man sich über den "Zum Rezept" Button genauer anschauen.</div>
-                </li>
-=======
                         <input class="accordion-item-input" type="checkbox" name="accordion" id="item3" />
                         <label for="item3" class="accordion-item-header">verwendete Technologien<span class="accordion-item-header-symbol">&#9650;</span></label>
                         <div class="accordion-item-text">
@@ -125,7 +119,6 @@
                             </ul>
                         </div>
                     </li>
->>>>>>> 0536e93ac69b53840cdfc72a713384ee3c581c75
               </ul>
             </div>
     </section>
