@@ -5,7 +5,25 @@ import stylesheet from "./recipe-search.css";
 /**
  * View mit der Rezeptsuche
  */
-var activeItems = []; //Array in dem alle aktuell ausgewählten Bilder/Zutaten gespeichert sind 
+var activeItems = []; //Array in dem alle aktuell ausgewählten Bilder/Zutaten gespeichert sind
+
+/*Hier alle Zutaten eintragen, die als Bild angezeigt werden sollen. 
+Dementsprechend muss auch ein Eintrag in der recipe-search.css gemacht werden um das Hintergrundbild festzulegen
+und das Bild muss dementsprechend abgespeichert sein.*/
+var ingredients = [
+  "tomato",
+  "mushrooms",
+  "pepper",
+  "onion",
+  "garlic",
+  "carrot",
+  "corn",
+  "salad",
+  "brokkoli",
+  "potato",
+  "aubergine",
+  "leek"
+];
 
 class RecipeSearch {
   /**
@@ -44,199 +62,25 @@ class RecipeSearch {
     content.appendChild(input);
 
     let itemView = document.createElement("div");
-    itemView.setAttribute("id","itemView");
+    itemView.setAttribute("id", "itemView");
 
-    //Tomate
-    let tomato = document.createElement("div");
-    tomato.setAttribute("id", "tomato");
-    tomato.classList.add("item");
-    tomato.classList.add("grey");
-    tomato.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("tomato");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("tomato");
-      }
-    });
-    itemView.appendChild(tomato);
-
-    //Pilze
-    let mushrooms = document.createElement("div");
-    mushrooms.setAttribute("id", "mushrooms");
-    mushrooms.classList.add("item");
-    mushrooms.classList.add("grey");
-    mushrooms.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        activeItems.push("mushrooms");
-        event.target.classList.remove("grey");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("mushrooms");
-      }
-    });
-    itemView.appendChild(mushrooms);
-
-    //Paprika
-    let pepper = document.createElement("div");
-    pepper.setAttribute("id", "pepper");
-    pepper.classList.add("item");
-    pepper.classList.add("grey");
-    pepper.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("pepper");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("pepper");
-      }
-    });
-    itemView.appendChild(pepper);
-
-    //Zwiebel
-    let onion = document.createElement("div");
-    onion.setAttribute("id", "onion");
-    onion.classList.add("item");
-    onion.classList.add("grey");
-    onion.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("onion");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("onion");
-      }
-    });
-    itemView.appendChild(onion);
-
-    //Knoblauch
-    let garlic = document.createElement("div");
-    garlic.setAttribute("id", "garlic");
-    garlic.classList.add("item");
-    garlic.classList.add("grey");
-    garlic.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("garlic");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("garlic");
-      }
-    });
-    itemView.appendChild(garlic);
-
-    //Karotte
-    let carrot = document.createElement("div");
-    carrot.setAttribute("id", "carrot");
-    carrot.classList.add("item");
-    carrot.classList.add("grey");
-    carrot.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("carrot");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("carrot");
-      }
-    });
-    itemView.appendChild(carrot);
-
-    //Mais
-    let corn = document.createElement("div");
-    corn.setAttribute("id", "corn");
-    corn.classList.add("item");
-    corn.classList.add("grey");
-    corn.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("corn");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("corn");
-      }
-    });
-    itemView.appendChild(corn);
-
-    //Salat
-    let salad = document.createElement("div");
-    salad.setAttribute("id", "salad");
-    salad.classList.add("item");
-    salad.classList.add("grey");
-    salad.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("salad");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("salad");
-      }
-    });
-    itemView.appendChild(salad);
-
-    //Brokkoli
-    let brokkoli = document.createElement("div");
-    brokkoli.setAttribute("id", "brokkoli");
-    brokkoli.classList.add("item");
-    brokkoli.classList.add("grey");
-    brokkoli.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("brokkoli");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("brokkoli");
-      }
-    });
-    itemView.appendChild(brokkoli);
-
-    //Kartoffel
-    let potato = document.createElement("div");
-    potato.setAttribute("id", "potato");
-    potato.classList.add("item");
-    potato.classList.add("grey");
-    potato.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("potato");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("potato");
-      }
-    });
-    itemView.appendChild(potato);
-
-    //Aubergine
-    let aubergine = document.createElement("div");
-    aubergine.setAttribute("id", "aubergine");
-    aubergine.classList.add("item");
-    aubergine.classList.add("grey");
-    aubergine.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("aubergine");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("aubergine");
-      }
-    });
-    itemView.appendChild(aubergine);
-
-    //Lauch
-    let leek = document.createElement("div");
-    leek.setAttribute("id", "leek");
-    leek.classList.add("item");
-    leek.classList.add("grey");
-    leek.addEventListener("click", (event) => {
-      if (event.target.classList.contains("grey")) {
-        event.target.classList.remove("grey");
-        activeItems.push("leek");
-      } else {
-        event.target.classList.add("grey");
-        this.delete("leek");
-      }
-    });
-    itemView.appendChild(leek);
+    //Zutaten Bilder hinzufügen
+    for (let i = 0; i < ingredients.length; i++) {
+      let temp = document.createElement("div");
+      temp.setAttribute("id", ingredients[i]);
+      temp.classList.add("item");
+      temp.classList.add("grey");
+      temp.addEventListener("click", event => {
+        if (event.target.classList.contains("grey")) {
+          event.target.classList.remove("grey");
+          activeItems.push(ingredients[i]);
+        } else {
+          event.target.classList.add("grey");
+          this.delete(ingredients[i]);
+        }
+      });
+      itemView.appendChild(temp);
+    }
 
     content.appendChild(itemView);
 
@@ -270,7 +114,8 @@ class RecipeSearch {
       if (value_searchIngredients === "" && value_activeItems === "") {
         value_searchIngredients = " ";
       }
-      if (value_searchIngredients != "" && value_activeItems != ""){  //wenn in beidem Werte sind, Komma anhängen
+      if (value_searchIngredients != "" && value_activeItems != "") {
+        //wenn in beidem Werte sind, Komma anhängen
         value_activeItems = value_activeItems + ",";
       }
       href =
@@ -293,8 +138,8 @@ class RecipeSearch {
     };
   }
 
-  delete(item){
-    activeItems.splice( activeItems.indexOf(item), 1 );
+  delete(item) {
+    activeItems.splice(activeItems.indexOf(item), 1);
     console.log(item + " gelöscht! activeItems: ", activeItems);
   }
 

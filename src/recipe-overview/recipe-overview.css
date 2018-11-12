@@ -80,7 +80,6 @@ padding ist innere Abstand vom rand bsp div */
 
 }
 .recipe-overview .titel{
-    cursor: pointer;
     width: 60%;
     padding-top: 0.8em;
     padding-left: 0.5em;
@@ -107,7 +106,8 @@ padding ist innere Abstand vom rand bsp div */
   height: 100%;
   width: 100%;
 }
-.recipe-overview .a {
+.recipe-overview .kasten a {
+  cursor: pointer;
   text-decoration: none;
   color: var(--olivegreen);
 }
