@@ -35,7 +35,7 @@
     "babel-preset-env": "^1.7.0",
     "dexie": "^2.0.4",
     "navigo": "^7.1.2",
-    "parcel-bundler": "^1.10.2",
+    "parcel-bundler": "^1.12.5",
     "shelljs": "^0.8.5"
   },
   "dependencies": {
